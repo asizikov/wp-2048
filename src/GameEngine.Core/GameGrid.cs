@@ -18,6 +18,8 @@ namespace Game.Process
             Value = value;
         }
 
+        public Tile(){}
+
         public int X { get; set; }
         public int Y { get; set; }
         public int Value { get; set; }
@@ -40,22 +42,27 @@ namespace Game.Process
     public class GameGrid
     {
         public Tile[][] Cells { get; set; }
-        private readonly int _size;
+        public int Size { get; set; }
 
         public GameGrid(int size)
         {
-            _size = size;
+            Size = size;
             Cells = new Tile[size][];
             Build();
+        }
+
+        public GameGrid()
+        {
+            
         }
 
 
         private void Build()
         {
-            for (var x = 0; x < _size; x++)
+            for (var x = 0; x < Size; x++)
             {
-                Cells[x] = new Tile[_size];
-                for (var y = 0; y < _size; y++)
+                Cells[x] = new Tile[Size];
+                for (var y = 0; y < Size; y++)
                 {
                     Cells[x][y] = null;
                 }
@@ -91,8 +98,8 @@ namespace Game.Process
 
         public bool WithinBounds(Position position)
         {
-            return position.X >= 0 && position.X < _size &&
-                   position.Y >= 0 && position.Y < _size;
+            return position.X >= 0 && position.X < Size &&
+                   position.Y >= 0 && position.Y < Size;
         }
 
         public void RemoveTile(Tile tile)
@@ -133,9 +140,9 @@ namespace Game.Process
 
         public void EachCell(Action<int, int, Tile> callback)
         {
-            for (var x = 0; x < _size; x++)
+            for (var x = 0; x < Size; x++)
             {
-                for (var y = 0; y < _size; y++)
+                for (var y = 0; y < Size; y++)
                 {
                     callback(x, y, Cells[x][y]);
                 }

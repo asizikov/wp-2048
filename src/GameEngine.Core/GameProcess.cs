@@ -40,6 +40,36 @@ namespace GameEngine
             Initialise();
         }
 
+        public GameProcess(IInputObserver inputObserver, IGameController gameController, int size,
+            GameState gameState)
+        {
+            if (inputObserver == null) throw new ArgumentNullException("inputObserver");
+            if (gameController == null) throw new ArgumentNullException("gameController");
+            _inputObserver = inputObserver;
+            _gameController = gameController;
+            _size = size;
+
+            _inputObserver.Move += InputObserverOnMove;
+            _inputObserver.Restart += InputObserverOnRestart;
+            _startTiles = 2;
+            Initialise(gameState);
+        }
+
+
+        public GameState GameStatusSnapshot
+        {
+            get
+            {
+                return new GameState
+                {
+                    Grid = _grid,
+                    Score = _score,
+                    Won = _won,
+                    Over = _over
+                };
+            }
+        }
+
         private void Initialise()
         {
             _grid = new GameGrid(_size);
@@ -48,6 +78,15 @@ namespace GameEngine
             _won = false;
             AddStartTiles();
 
+            Actuate();
+        }
+
+        private void Initialise(GameState gameState)
+        {
+            _score = gameState.Score;
+            _over = gameState.Over;
+            _won = gameState.Won;
+            _grid = gameState.Grid;
             Actuate();
         }
 

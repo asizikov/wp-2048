@@ -39,6 +39,7 @@
     <Compile Include="Direction.cs" />
     <Compile Include="GameGrid.cs" />
     <Compile Include="GameProcess.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="IGameController.cs" />
     <Compile Include="IInputObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
