@@ -4,6 +4,7 @@ using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
+using Game.Utils;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Game.Resources;
@@ -12,27 +13,13 @@ namespace Game
 {
     public partial class App : Application
     {
-        /// <summary>
-        /// Provides easy access to the root frame of the Phone Application.
-        /// </summary>
-        /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
-        /// <summary>
-        /// Constructor for the Application object.
-        /// </summary>
         public App()
         {
-            // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
-
-            // Standard XAML initialization
             InitializeComponent();
-
-            // Phone-specific initialization
             InitializePhoneApplication();
-
-            // Language display initialization
             InitializeLanguage();
 
             // Show graphics profiling information while debugging.
@@ -94,6 +81,7 @@ namespace Game
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            CrashLogger.SaveCrashInfo(e);
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
