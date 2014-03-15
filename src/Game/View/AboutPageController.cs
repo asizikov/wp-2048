@@ -18,6 +18,13 @@ namespace Game.View
         private void Initialize()
         {
             _view.OriginalGameButton.Click += OriginalGameButtonOnClick;
+            _view.ReviewButton.Click += ReviewButtonOnClick;
+        }
+
+        private void ReviewButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var task = new MarketplaceReviewTask();
+            task.Show();
         }
 
         private void OriginalGameButtonOnClick(object sender, RoutedEventArgs routedEventArgs)

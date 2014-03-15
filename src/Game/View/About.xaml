@@ -26,6 +26,7 @@
                                      Name="OriginalGameButton">
                         http://gabrielecirulli.github.io/2048/
                     </HyperlinkButton>
+                    <Button Name="ReviewButton" Content="Give us a review"/>
                 </StackPanel>
             </phone:PivotItem>
             <phone:PivotItem Header="help">
