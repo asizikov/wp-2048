@@ -1,6 +1,5 @@
 ﻿using System.Windows.Navigation;
 using Game.Lifecicle;
-using Microsoft.Phone.Controls;
 
 namespace Game.View
 {
