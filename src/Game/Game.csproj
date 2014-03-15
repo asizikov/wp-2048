@@ -137,6 +137,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\arrow-up-01.png" />
+    <Content Include="Assets\arrow-right-01.png" />
+    <Content Include="Assets\arrow-left-01.png" />
+    <Content Include="Assets\arrow-down-01.png" />
+    <Content Include="Assets\refresh.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
