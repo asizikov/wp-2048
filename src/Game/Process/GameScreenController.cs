@@ -15,6 +15,7 @@ namespace Game.Process
         private MainPage _view;
         private int _size;
         private readonly object _drawLock = new object();
+        private string _lastScore = string.Empty;
 
         public GameScreenController(MainPage view)
         {
@@ -28,9 +29,14 @@ namespace Game.Process
         private void OverShareOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
             StatisticsService.PublishShareResultClick();
+            if (_view != null)
+            {
+                _lastScore = _view.OverScore.Text;
+            }
+            
             var shareStatusTask = new ShareStatusTask
             {
-                Status = "I scored " + _view.OverScore.Text + " points at 2048 for Windows Phone, a game where you " +
+                Status = "I scored " + _lastScore + " points at 2048 for Windows Phone, a game where you " +
                          "join numbers to score high! #2048game #wp2048"
             };
 

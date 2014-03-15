@@ -11,7 +11,7 @@ namespace Game.Lifecicle
 
         public static Version Version
         {
-            get { return new Version(1, 0, 0); }
+            get { return new Version(1, 0, 1); }
         }
 
         public static uint YandexMetricaKey
