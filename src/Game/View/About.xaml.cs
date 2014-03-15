@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using System.Windows.Navigation;
+using Game.Lifecicle;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
 namespace Game.View
 {
-    public partial class About : PhoneApplicationPage
+    public partial class About
     {
         public About()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            StatisticsService.PublishAboutPageLoaded();
         }
     }
 }

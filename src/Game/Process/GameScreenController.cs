@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Game.Lifecicle;
 using GameEngine;
 using Microsoft.Phone.Shell;
 
@@ -17,9 +18,9 @@ namespace Game.Process
         public GameScreenController(MainPage view)
         {
             _view = view;
+            StatisticsService.ReportGamePageLoaded();
             _view.LayoutRoot.Background = new SolidColorBrush(ConvertStringToColor("#34aadc"));
             BuildApplicationBar();
-
         }
 
         private void BuildApplicationBar()
@@ -69,6 +70,10 @@ namespace Game.Process
 
                 _view.OverScore.Text = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
                 _view.OverStatus.Text = gameStatus.Won ? "You win!" : "Game over!";
+                if (gameStatus.Won)
+                {
+                    StatisticsService.PublishWon();
+                }
             }
             else
             {
