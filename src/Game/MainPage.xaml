@@ -82,7 +82,7 @@
                     <TextBlock Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text="score: "/>
                     </StackPanel>
                   <Button Name="OverReset" Content="reset"/>
-                <Button Content="share result"/>
+                <Button Name="OverShare" Content="share result"/>
             </StackPanel>
         </Grid>
     </Grid>

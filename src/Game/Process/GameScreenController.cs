@@ -6,6 +6,7 @@ using System.Windows.Media;
 using Game.Lifecicle;
 using GameEngine;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace Game.Process
 {
@@ -18,9 +19,21 @@ namespace Game.Process
         public GameScreenController(MainPage view)
         {
             _view = view;
+            _view.OverShare.Click += OverShareOnClick;
             StatisticsService.ReportGamePageLoaded();
             _view.LayoutRoot.Background = new SolidColorBrush(ConvertStringToColor("#34aadc"));
             BuildApplicationBar();
+        }
+
+        private void OverShareOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            var shareStatusTask = new ShareStatusTask
+            {
+                Status = "I scored " + _view.OverScore.Text + " points at 2048 for Windows Phone, a game where you " +
+                         "join numbers to score high! #2048game #wp2048"
+            };
+
+            shareStatusTask.Show();
         }
 
         private void BuildApplicationBar()
