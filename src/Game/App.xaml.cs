@@ -4,6 +4,7 @@ using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
+using Game.Lifecicle;
 using Game.Utils;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -21,7 +22,7 @@ namespace Game
             InitializeComponent();
             InitializePhoneApplication();
             InitializeLanguage();
-
+            Bootstrapper.InitApplication();
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
             {

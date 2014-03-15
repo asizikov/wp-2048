@@ -4,11 +4,11 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
 
-namespace Game.Utils
+namespace Game.Lifecicle
 {
     public static class CrashLogger
     {
-        private const string DIRECTORY_NAME = "CrashReports";
+        private const string DirectoryName = "CrashReports";
 
         public static void SaveCrashInfo(ApplicationUnhandledExceptionEventArgs e)
         {
@@ -31,11 +31,11 @@ namespace Game.Utils
 
             var fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
 
-            if (!fileStorage.GetDirectoryNames().Contains(DIRECTORY_NAME))
+            if (!fileStorage.GetDirectoryNames().Contains(DirectoryName))
             {
-                fileStorage.CreateDirectory(DIRECTORY_NAME);
+                fileStorage.CreateDirectory(DirectoryName);
             }
-            var fileName = DIRECTORY_NAME + "\\" + fileSuffix + ".txt";
+            var fileName = DirectoryName + "\\" + fileSuffix + ".txt";
 
             using (var fileWriter = new StreamWriter(fileStorage.OpenFile(fileName, FileMode.Append)))
             {
