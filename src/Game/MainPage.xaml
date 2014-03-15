@@ -25,10 +25,10 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="3" Margin="0,12"  >
+        <StackPanel Grid.ColumnSpan="3" Margin="36,12"  >
             <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="2048"/>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="score: "/>
+                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="score:"/>
                 <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" "/>
             </StackPanel>
 
@@ -78,8 +78,8 @@
                      
                            Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock  Style="{StaticResource PhoneTextLargeStyle}" Text="score: "/>
-                    <TextBlock Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text="score: "/>
+                    <TextBlock  Style="{StaticResource PhoneTextLargeStyle}" Text="score:"/>
+                    <TextBlock Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text=""/>
                     </StackPanel>
                   <Button Name="OverReset" Content="reset"/>
                 <Button Name="OverShare" Content="share result"/>

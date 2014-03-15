@@ -18,6 +18,7 @@ namespace Game.Lifecicle
         private const string GamePageLoaded = "Game page loaded";
         private const string AboutPageLoaded = "About page loaded";
         private const string Won = "We have a winner";
+        private const string ShareClick = "Share result button clicked";
 
 
         public static void PublishAboutPageLoaded()
@@ -33,6 +34,11 @@ namespace Game.Lifecicle
         public static void PublishWon()
         {
             PublishEvent(Won);
+        }
+
+        public static void PublishShareResultClick()
+        {
+            PublishEvent(ShareClick);
         }
     }
 }

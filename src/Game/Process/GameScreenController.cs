@@ -27,6 +27,7 @@ namespace Game.Process
 
         private void OverShareOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
+            StatisticsService.PublishShareResultClick();
             var shareStatusTask = new ShareStatusTask
             {
                 Status = "I scored " + _view.OverScore.Text + " points at 2048 for Windows Phone, a game where you " +
