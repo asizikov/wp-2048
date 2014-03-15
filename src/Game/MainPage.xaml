@@ -16,87 +16,109 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="3" Margin="36,12"  >
-            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="2048"/>
+        <StackPanel Grid.ColumnSpan="3" Margin="36,12">
+            <TextBlock
+                Foreground="White"
+                Style="{StaticResource PhoneTextLargeStyle}" Text="2048" />
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="score:"/>
-                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" "/>
+                <TextBlock
+                    Foreground="White"
+                    Style="{StaticResource PhoneTextLargeStyle}" Text="score:" />
+                <TextBlock
+                    Foreground="White"
+                    Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" " />
             </StackPanel>
 
         </StackPanel>
-        <Grid Grid.Column="0"  HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" >
-            <StackPanel Name="Field"/>
+        <Grid Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1">
+            <StackPanel Name="Field" />
         </Grid>
 
-        <Grid Grid.Column="0" Margin="12,0,12,12"  Grid.ColumnSpan="3" VerticalAlignment="Top" 
+        <Grid Grid.Column="0" Margin="12,0,12,12" Grid.ColumnSpan="3" VerticalAlignment="Top"
               Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1">
-                <Button 
+                <Button
+                    BorderBrush="White"
                     Foreground="DarkGray"
-                    Height="110"   Name="UpButton" >
-                    <Image Source="/Assets/arrow-up-01.png"/>
+                    Height="110" Name="UpButton">
+                    <Image Source="/Assets/arrow-up-01.png" />
                 </Button>
-                <Button 
+                <Button
+                    BorderBrush="White"
                     Foreground="DarkGray"
-                    Height="110"   Name="DownButton">
-                    <Image Source="/Assets/arrow-down-01.png"/>
+                    Height="110" Name="DownButton">
+                    <Image Source="/Assets/arrow-down-01.png" />
                 </Button>
             </StackPanel>
 
-            <Button  Grid.Column="0"  Name="LeftButton" >
-                <Image Source="/Assets/arrow-left-01.png"/>
+            <Button
+                BorderBrush="White"
+                Grid.Column="0" Name="LeftButton">
+                <Image Source="/Assets/arrow-left-01.png" />
             </Button>
-            <Button  Grid.Column="2"  Name="RightButton" >
-                <Image Source="/Assets/arrow-right-01.png"/>
+            <Button
+                BorderBrush="White"
+                Grid.Column="2" Name="RightButton">
+                <Image Source="/Assets/arrow-right-01.png" />
             </Button>
         </Grid>
 
-        <Button Grid.Row="0" Grid.Column="2" Height="87" Width="87" Name="ResetButton"> 
-            <Image Source="/Assets/refresh.png"/>
+        <Button Grid.Row="0"
+                BorderBrush="White"
+                Grid.Column="2" Height="87" Width="87" Name="ResetButton">
+            <Image Source="/Assets/refresh.png" />
         </Button>
-        <Grid Grid.Row="0" Grid.RowSpan="3" 
+        <Grid Grid.Row="0" Grid.RowSpan="3"
               Grid.Column="0"
               Grid.ColumnSpan="3"
-              Background="Gray" 
+              Background="Gray"
               Opacity="0.9"
-              Name="GameOverBg" 
-              Visibility="Collapsed">
-        </Grid>
+              Name="GameOverBg"
+              Visibility="Collapsed" />
         <Grid
-             Name="GameOver"
+            Name="GameOver"
             Visibility="Collapsed"
-            Grid.Row="0" Grid.RowSpan="3" 
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
-            >
+            Grid.Row="0" Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text=""
-                     
-                           Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}"/>
+                           Foreground="White"
+                           Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}" />
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock  Style="{StaticResource PhoneTextLargeStyle}" Text="score:"/>
-                    <TextBlock Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text=""/>
-                    </StackPanel>
-                  <Button Name="OverReset" Content="reset"/>
-                <Button Name="OverShare" Content="share result"/>
+                    <TextBlock
+                        Foreground="White"
+                        Style="{StaticResource PhoneTextLargeStyle}" Text="score:" />
+                    <TextBlock
+                        Foreground="White"
+                        Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text="" />
+                </StackPanel>
+                <Button
+                    BorderBrush="White"
+                    Foreground="White"
+                    Name="OverReset" Content="reset" />
+                <Button
+                    BorderBrush="White"
+                    Foreground="White"
+                    Name="OverShare" Content="share result" />
             </StackPanel>
         </Grid>
     </Grid>

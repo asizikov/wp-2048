@@ -22,11 +22,12 @@
                         Based on Gabriele Cirulli's 2048 game.
                     </TextBlock>
                     <HyperlinkButton
+                        Margin="0,12"
                         HorizontalAlignment="Left"
                                      Name="OriginalGameButton">
                         http://gabrielecirulli.github.io/2048/
                     </HyperlinkButton>
-                    <Button Name="ReviewButton" Content="Give us a review"/>
+                    <Button Name="ReviewButton" Margin="0,24" Content="Give us a review"/>
                 </StackPanel>
             </phone:PivotItem>
             <phone:PivotItem Header="help">
