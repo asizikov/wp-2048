@@ -15,21 +15,34 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <phone:Pivot>
+            <phone:PivotItem Header="about">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap">
+                        Based on Gabriele Cirulli's 2048 game.
+                    </TextBlock>
+                    <HyperlinkButton
+                        HorizontalAlignment="Left"
+                                     Name="OriginalGameButton">
+                        http://gabrielecirulli.github.io/2048/
+                    </HyperlinkButton>
+                </StackPanel>
+            </phone:PivotItem>
+            <phone:PivotItem Header="help">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap">
+                    Join numbers and get the 2048 tile!
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap">
+                    Use arrow keys to move the tiles.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap">
+                    When two tiles with the same number touch, they merge into one.
+                    </TextBlock>
+                </StackPanel>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
-        </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
     </Grid>
 
 </phone:PhoneApplicationPage>

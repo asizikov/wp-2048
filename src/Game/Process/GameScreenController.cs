@@ -117,9 +117,10 @@ namespace Game.Process
         {
             if(cell == null || cell.Value < 128)
                 return 57;
+            if (cell.Value == 256) return 45;
             if (cell.Value < 1024) return 50;
 
-            return 45;
+            return 35;
         }
 
         private  Color GetBackground(Tile cell)
@@ -170,14 +171,14 @@ namespace Game.Process
             //handle ARGB strings (8 characters long)
             if (hex.Length == 8)
             {
-                a = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+                a = byte.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
                 start = 2;
             }
 
             //convert RGB characters to bytes
-            r = byte.Parse(hex.Substring(start, 2), System.Globalization.NumberStyles.HexNumber);
-            g = byte.Parse(hex.Substring(start + 2, 2), System.Globalization.NumberStyles.HexNumber);
-            b = byte.Parse(hex.Substring(start + 4, 2), System.Globalization.NumberStyles.HexNumber);
+            r = byte.Parse(hex.Substring(start, 2), NumberStyles.HexNumber);
+            g = byte.Parse(hex.Substring(start + 2, 2), NumberStyles.HexNumber);
+            b = byte.Parse(hex.Substring(start + 4, 2), NumberStyles.HexNumber);
 
             return Color.FromArgb(a, r, g, b);
         }

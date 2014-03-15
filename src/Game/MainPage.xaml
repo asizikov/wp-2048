@@ -25,15 +25,19 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="3" Margin="0,12"  Orientation="Horizontal">
-            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="score: "/>
-            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" "/>
+        <StackPanel Grid.ColumnSpan="3" Margin="0,12"  >
+            <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="2048"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="score: "/>
+                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" "/>
+            </StackPanel>
+
         </StackPanel>
         <Grid Grid.Column="0"  HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" >
             <StackPanel Name="Field"/>
         </Grid>
 
-        <Grid Grid.Column="0" Margin="12,0,12,37"  Grid.ColumnSpan="3" VerticalAlignment="Top" 
+        <Grid Grid.Column="0" Margin="12,0,12,12"  Grid.ColumnSpan="3" VerticalAlignment="Top" 
               Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -45,14 +49,12 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1">
-                <Button Height="120"   Name="UpButton" Content="Up" />
-                <Button Height="120"   Name="DownButton" Content="Down" />
+                <Button Height="110"   Name="UpButton" Content="Up" />
+                <Button Height="110"   Name="DownButton" Content="Down" />
             </StackPanel>
 
             <Button  Grid.Column="0"  Name="LeftButton" Content="Left" />
             <Button  Grid.Column="2"  Name="RightButton" Content="Right" />
-            
-
         </Grid>
 
         <Button Grid.Row="0" Grid.Column="2" Name="ResetButton" Content="Reset" />

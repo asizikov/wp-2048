@@ -5,9 +5,12 @@ namespace Game.View
 {
     public partial class About
     {
+        private AboutPageController _aboutPageController;
+
         public About()
         {
             InitializeComponent();
+            _aboutPageController = new AboutPageController(this);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
