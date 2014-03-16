@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Game.Lifecicle;
 using Microsoft.Phone.Tasks;
 
 namespace Game.View
@@ -17,6 +18,7 @@ namespace Game.View
 
         private void Initialize()
         {
+            _view.Version.Text = Configuration.Version.ToString();
             _view.OriginalGameButton.Click += OriginalGameButtonOnClick;
             _view.ReviewButton.Click += ReviewButtonOnClick;
         }

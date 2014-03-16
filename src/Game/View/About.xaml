@@ -18,6 +18,10 @@
         <phone:Pivot>
             <phone:PivotItem Header="about">
                 <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="version:"/>
+                        <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Name="Version" Text=""/>
+                    </StackPanel>
                     <TextBlock Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap">
                         Based on Gabriele Cirulli's 2048 game.
                     </TextBlock>
