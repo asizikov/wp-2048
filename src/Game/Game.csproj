@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Utils\ApplicationSettings.cs" />
     <Compile Include="Lifecicle\CrashLogger.cs" />
+    <Compile Include="Utils\StoryboardHelper.cs" />
     <Compile Include="View\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

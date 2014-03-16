@@ -3,7 +3,9 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using Game.Lifecicle;
+using Game.Utils;
 using GameEngine;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
@@ -65,7 +67,13 @@ namespace Game.Process
 
         public void RedrawUi(GameGrid grid, GameStatus gameStatus)
         {
-            _view.Score.Text = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
+             var score = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
+            var animateScore = score != _view.Score.Text;
+            _view.Score.Text = score;
+            if (animateScore)
+            {
+                AnimateScore();
+            }
             lock (_drawLock)
             {
                 _view.Field.Children.Clear();
@@ -104,6 +112,12 @@ namespace Game.Process
                 }
             }
             
+        }
+
+        private void AnimateScore()
+        {
+            _view.fadeIn.Begin();
+
         }
 
         private Border CreateCell(GameGrid grid, int j, int i)
