@@ -8,13 +8,12 @@ namespace Game
 {
     public class SwipeInputObserver : IInputObserver
     {
-        private static readonly int Delta = 50;
         private readonly MainPage _view;
 
         public SwipeInputObserver(MainPage view)
         {
             _view = view;
-            _view.LayoutRoot.ManipulationDelta += LayoutRootOnManipulationDelta;
+            _view.LayoutRoot.ManipulationCompleted += LayoutRootOnManipulationDelta;
             _view.ResetButton.Click += ResetButtonOnClick;
             _view.OverReset.Click += ResetButtonOnClick;
         }
@@ -27,34 +26,19 @@ namespace Game
             }
         }
 
-        private void LayoutRootOnManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        private void LayoutRootOnManipulationDelta(object sender, ManipulationCompletedEventArgs e)
         {
+            var x = e.TotalManipulation.Translation.X;
+            var y = e.TotalManipulation.Translation.Y;
 
-            if (e.CumulativeManipulation.Translation.X > Delta &&
-                (e.CumulativeManipulation.Translation.Y > -25 &&
-                 e.CumulativeManipulation.Translation.Y < 25))
+            if (Math.Abs(x) > Math.Abs(y))
             {
-                FireMove(Direction.Right);
+                FireMove(x >= 0 ? Direction.Right : Direction.Left);
             }
-            if (e.CumulativeManipulation.Translation.X < -Delta &&
-                (e.CumulativeManipulation.Translation.Y > -25 &&
-                 e.CumulativeManipulation.Translation.Y < 25))
+            else
             {
-                FireMove(Direction.Left);
+                FireMove(y >= 0? Direction.Down : Direction.Up);
             }
-            if (e.CumulativeManipulation.Translation.Y > Delta &&
-               (e.CumulativeManipulation.Translation.X > -25 &&
-                e.CumulativeManipulation.Translation.X < 25))
-            {
-                FireMove(Direction.Down);
-            }
-            if (e.CumulativeManipulation.Translation.Y < -Delta &&
-                (e.CumulativeManipulation.Translation.X > -25 &&
-                 e.CumulativeManipulation.Translation.X < 25))
-            {
-                FireMove(Direction.Up);
-            }
-
         }
 
         private void FireMove(Direction direction)
@@ -70,8 +54,8 @@ namespace Game
 
         public void Dispose()
         {
-            if(_view == null) return;
-            _view.LayoutRoot.ManipulationDelta -= LayoutRootOnManipulationDelta;
+            if (_view == null) return;
+            _view.LayoutRoot.ManipulationCompleted -= LayoutRootOnManipulationDelta;
             _view.ResetButton.Click -= ResetButtonOnClick;
             _view.OverReset.Click -= ResetButtonOnClick;
         }

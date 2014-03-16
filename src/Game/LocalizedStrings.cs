@@ -7,8 +7,8 @@ namespace Game
     /// </summary>
     public class LocalizedStrings
     {
-        private static AppResources _localizedResources = new AppResources();
+        private static AppResources _s = new AppResources();
 
-        public AppResources LocalizedResources { get { return _localizedResources; } }
+        public AppResources S { get { return _s; } }
     }
 }

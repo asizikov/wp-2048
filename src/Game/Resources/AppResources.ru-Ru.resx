@@ -135,57 +135,57 @@
     <value>Menu Item</value>
   </data>
   <data name="About" xml:space="preserve">
-    <value>about</value>
+    <value>о программе</value>
   </data>
   <data name="AboutBasedOn" xml:space="preserve">
-    <value>Based on Gabriele Cirulli's 2048 game.</value>
+    <value>По мотивам игры 2048  от Gabriele Cirulli.</value>
   </data>
   <data name="AboutGiveUsAReview" xml:space="preserve">
-    <value>give us a review</value>
+    <value>оставьте нам отзыв</value>
   </data>
   <data name="AboutJoinNumbers" xml:space="preserve">
-    <value>Join numbers and get the 2048 tile!</value>
+    <value>Соединяйте числа,чтобы получить плитку с числом 2048!</value>
   </data>
   <data name="AboutUseArrowKeys" xml:space="preserve">
-    <value>Use arrow keys to move the tiles.</value>
+    <value>Используйте стрелки или жесты,чтобы двигать плитки.</value>
   </data>
   <data name="AboutWhenTwoNumberTouch" xml:space="preserve">
-    <value>When two tiles with the same number touch, they merge into one.</value>
+    <value>Когда две плитки с одинаковыми числами касаются, они объединяются в одну.</value>
   </data>
   <data name="ControlUseSwipe" xml:space="preserve">
-    <value>use swipe gestures to move tiles</value>
+    <value>используйте свайп для перемещения плиток</value>
   </data>
   <data name="GameGameOver" xml:space="preserve">
-    <value>Game over!</value>
+    <value>Вы проиграли!</value>
   </data>
   <data name="GameShareTemplate" xml:space="preserve">
-    <value>I scored {0} points at 2048 for Windows Phone, a game where you join numbers to score high! #2048game #wp2048</value>
+    <value>Я заработал {0} очков в игре 2048 для Windows Phone! #2048game #wp2048</value>
   </data>
   <data name="GameYouWin" xml:space="preserve">
-    <value>You win!</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>help</value>
+    <value>Победа!</value>
   </data>
   <data name="OverReset" xml:space="preserve">
-    <value>reset</value>
+    <value>начать заново</value>
   </data>
   <data name="OverShareResult" xml:space="preserve">
-    <value>share result</value>
+    <value>поделиться результатом</value>
   </data>
   <data name="Score" xml:space="preserve">
-    <value>score:</value>
+    <value>счёт:</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>settings</value>
+    <value>настройки</value>
   </data>
   <data name="SettingsGameControl" xml:space="preserve">
-    <value>game control</value>
+    <value>управление игрой</value>
   </data>
   <data name="SettingsUseSwipe" xml:space="preserve">
-    <value>use swipe gestures</value>
+    <value>использовать жесты</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>version:</value>
+    <value>версия: </value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>помощь</value>
   </data>
 </root>

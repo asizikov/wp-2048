@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
+  <Languages xmlns="">
+    <Language code="ru-RU" />
+  </Languages>
   <App xmlns="" ProductID="{a961f32a-61f7-400a-a9f7-88b3d5edc6a1}" Title="2048" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Game author" Description="2048 Game" Publisher="Game" PublisherID="{d5307145-326d-4834-b0d1-6df29077e423}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>

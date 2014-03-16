@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Game.Lifecicle;
+using Game.Resources;
 using GameEngine;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
@@ -42,10 +43,10 @@ namespace Game.Process
                 _lastScore = _view.OverScore.Text;
             }
 
+            var template = AppResources.GameShareTemplate;
             var shareStatusTask = new ShareStatusTask
             {
-                Status = "I scored " + _lastScore + " points at 2048 for Windows Phone, a game where you " +
-                         "join numbers to score high! #2048game #wp2048"
+                Status =  string.Format(template, _lastScore)
             };
 
             shareStatusTask.Show();
@@ -61,7 +62,7 @@ namespace Game.Process
                 IsMenuEnabled = true
             };
 
-            var aboutMenuItem = new ApplicationBarMenuItem {Text = "about"};
+            var aboutMenuItem = new ApplicationBarMenuItem {Text = AppResources.About};
             aboutMenuItem.Click += AboutButtonOnClick;
             _view.ApplicationBar.MenuItems.Add(aboutMenuItem);
         }
@@ -146,7 +147,7 @@ namespace Game.Process
             _view.GameOver.Visibility = Visibility.Visible;
 
             _view.OverScore.Text = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
-            _view.OverStatus.Text = gameStatus.Won ? "You win!" : "Game over!";
+            _view.OverStatus.Text = gameStatus.Won ? AppResources.GameYouWin : AppResources.GameGameOver;
             if (gameStatus.Won)
             {
                 StatisticsService.PublishWon();

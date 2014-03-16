@@ -24,16 +24,16 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="2048" Style="{StaticResource PhoneTextLargeStyle}"/>
-            <TextBlock Text="Settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="{Binding S.Settings, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="game control"/>
+                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding S.SettingsGameControl, Source={StaticResource Strings}}"/>
                 <toolkit:ToggleSwitch 
                     Name="GestureSwitch"
-                Header="use swipe gestures"></toolkit:ToggleSwitch>
+                Header="{Binding S.SettingsUseSwipe, Source={StaticResource Strings}}"></toolkit:ToggleSwitch>
             </StackPanel>
 
         </Grid>
