@@ -7,12 +7,15 @@ namespace Game.Process
 {
     internal static class AnimationFactory
     {
+        private static int totalDuration = 400;
+        private static int _middleDuration =250;
+
         public static void AnimateCell(Border cellView)
         {
             var popUpAnimation
                 = new DoubleAnimationUsingKeyFrames
                 {
-                    Duration = TimeSpan.FromMilliseconds(500)
+                    Duration = TimeSpan.FromMilliseconds(totalDuration)
                 };
 
 
@@ -27,14 +30,14 @@ namespace Game.Process
                 new DiscreteDoubleKeyFrame
                 {
                     Value = 6,
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(250))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(_middleDuration))
                 }
                 );
             popUpAnimation.KeyFrames.Add(
                 new DiscreteDoubleKeyFrame
                 {
                     Value = 12, // Target value (KeyValue)
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(500))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration))
                 }
                 );
 
@@ -46,7 +49,7 @@ namespace Game.Process
             var expandAnimation
                 = new DoubleAnimationUsingKeyFrames
                 {
-                    Duration = TimeSpan.FromMilliseconds(500)
+                    Duration = TimeSpan.FromMilliseconds(totalDuration)
                 };
 
 
@@ -61,14 +64,14 @@ namespace Game.Process
                 new DiscreteDoubleKeyFrame
                 {
                     Value = 102, // Target value (KeyValue)
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(250))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(_middleDuration))
                 }
                 );
             expandAnimation.KeyFrames.Add(
                 new DiscreteDoubleKeyFrame
                 {
                     Value = 90, // Target value (KeyValue)
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(500))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration))
                 }
                 );
             // Create a storyboard to apply the animation.
