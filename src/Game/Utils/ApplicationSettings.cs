@@ -29,11 +29,8 @@ namespace Game.Utils
                     UseSwipe = false
                 }));
             }
-            else
-            {
-                var favsJsonString = (string)IsolatedStorageSettings.ApplicationSettings[SettingsKey];
-                settings = DeserializeFromString<GameSettings>(favsJsonString);
-            }
+            var favsJsonString = (string) IsolatedStorageSettings.ApplicationSettings[SettingsKey];
+            settings = DeserializeFromString<GameSettings>(favsJsonString);
             return settings;
         }
 
@@ -53,7 +50,7 @@ namespace Game.Utils
             }
             else
             {
-                var favsJsonString = (string)IsolatedStorageSettings.ApplicationSettings[KEY];
+                var favsJsonString = (string) IsolatedStorageSettings.ApplicationSettings[KEY];
                 state = DeserializeFromString<GameState>(favsJsonString);
             }
             return state;
