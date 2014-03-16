@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:RateMyApp.Controls;assembly=RateMyApp"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -81,7 +82,7 @@
             <StackPanel Name="Field" />
         </Grid>
 
-        <Grid Grid.Column="0" Margin="12,0,12,12" Grid.ColumnSpan="3" VerticalAlignment="Top"
+        <Grid Name="ButtonsControl" Grid.Column="0" Margin="12,0,12,12" Grid.ColumnSpan="3" VerticalAlignment="Top"
               Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -118,13 +119,36 @@
                 <Image Source="/Assets/arrow-right-01.png" />
             </Button>
         </Grid>
-
-        <Button Grid.Row="0"
+        <Grid Name="SwipeControl"
+              Visibility="Collapsed"
+              Grid.Column="0" Margin="24,0,12,100" Grid.ColumnSpan="3" VerticalAlignment="Top"
+              Grid.Row="2">
+            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Style="{StaticResource PhoneTextLargeStyle}">
+                use swipe gestures to move tiles
+            </TextBlock>
+        </Grid>
+        <Grid
+            HorizontalAlignment="Right"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal">
+                <Button 
+                BorderBrush="White"
+                Margin="0,0,0,0"
+                Height="87" Width="87" Name="SettingsButton">
+                <Image Source="/Assets/settings.png" />
+                </Button>
+                <Button 
                 BorderBrush="White"
                 Margin="0,0,24,0"
-                Grid.Column="2" Height="87" Width="87" Name="ResetButton">
-            <Image Source="/Assets/refresh.png" />
-        </Button>
+                Height="87" Width="87" Name="ResetButton">
+                    <Image Source="/Assets/refresh.png" />
+                </Button>
+            </StackPanel>
+
+        </Grid>
+        
         <Grid Grid.Row="0" Grid.RowSpan="3"
               Grid.Column="0"
               Grid.ColumnSpan="3"
@@ -132,6 +156,13 @@
               Opacity="0.9"
               Name="GameOverBg"
               Visibility="Collapsed" />
+        <controls:FeedbackOverlay
+            Grid.Row="0" Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            CompanyName="Anton Sizikov"
+            FeedbackTo="pinholder@yandex.ru"
+            ApplicationName="2048" />
         <Grid
             Name="GameOver"
             Visibility="Collapsed"

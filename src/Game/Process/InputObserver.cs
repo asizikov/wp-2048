@@ -5,7 +5,7 @@ using GameEngine;
 
 namespace Game.Process
 {
-    internal class InputObserver : IInputObserver
+    public class InputObserver : IInputObserver
     {
         private Button _upButton;
         private Button _downButton;

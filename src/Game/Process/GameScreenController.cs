@@ -11,7 +11,7 @@ using Microsoft.Phone.Tasks;
 
 namespace Game.Process
 {
-    internal class GameScreenController : IGameController, IDisposable
+    internal class GameScreenController : IGameController
     {
         private MainPage _view;
         private int _cellSize;
@@ -22,9 +22,16 @@ namespace Game.Process
         {
             _view = view;
             _view.OverShare.Click += OverShareOnClick;
+            _view.SettingsButton.Click += SettingsButtonOnClick;
             StatisticsService.ReportGamePageLoaded();
             _view.LayoutRoot.Background = new SolidColorBrush(ConvertStringToColor("#34aadc"));
             BuildApplicationBar();
+        }
+
+        private void SettingsButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            StatisticsService.PublishSettingsClicked();
+            _view.NavigationService.Navigate(new Uri("/View/Settings.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void OverShareOnClick(object sender, RoutedEventArgs routedEventArgs)
@@ -253,9 +260,5 @@ namespace Game.Process
             return Color.FromArgb(a, r, g, b);
         }
 
-        public void Dispose()
-        {
-            _view = null;
-        }
     }
 }

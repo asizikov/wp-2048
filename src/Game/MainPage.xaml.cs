@@ -1,4 +1,5 @@
-﻿using System.Windows.Navigation;
+﻿using System.Windows;
+using System.Windows.Navigation;
 using Game.Process;
 using Game.Utils;
 using GameEngine;
@@ -7,22 +8,35 @@ namespace Game
 {
     public partial class MainPage
     {
-        private InputObserver _inputObserver;
+        private IInputObserver _inputObserver;
         private GameScreenController _gameScreenController;
         private GameProcess _gameProcess;
-        private readonly ApplicationSettings _applicationSettings;
+        private ApplicationSettings _applicationSettings;
 
         public MainPage()
         {
             InitializeComponent();
-            _applicationSettings = new ApplicationSettings();
+            
         }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            _inputObserver = new InputObserver(UpButton, DownButton, LeftButton, RightButton, ResetButton, OverReset);
+            _applicationSettings = new ApplicationSettings();
+            if (_applicationSettings.Settings.UseSwipe)
+            {
+                _inputObserver = new SwipeInputObserver(this);
+                SwipeControl.Visibility = Visibility.Visible;
+                ButtonsControl.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                _inputObserver = new InputObserver(UpButton, DownButton, LeftButton, RightButton, ResetButton, OverReset);
+                SwipeControl.Visibility = Visibility.Collapsed;
+                ButtonsControl.Visibility = Visibility.Visible;
+            }
+            
             _gameScreenController = new GameScreenController(this);
             _gameProcess = CreateGameProcess();
         }
@@ -43,7 +57,6 @@ namespace Game
             _applicationSettings.Save(_gameProcess);
             base.OnNavigatedFrom(e);
             _inputObserver.Dispose();
-            _gameScreenController.Dispose();
         }
     }
 }

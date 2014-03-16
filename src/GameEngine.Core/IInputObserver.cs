@@ -7,5 +7,6 @@ namespace GameEngine
     {
         event Action<Direction> Move;
         event Action Restart;
+        void Dispose();
     }
 }

@@ -26,7 +26,7 @@ namespace Game.Process
             popUpAnimation.KeyFrames.Add(
                 new DiscreteDoubleKeyFrame
                 {
-                    Value = 6, // Target value (KeyValue)
+                    Value = 6,
                     KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(250))
                 }
                 );

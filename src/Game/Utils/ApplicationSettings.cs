@@ -4,12 +4,37 @@ using Newtonsoft.Json;
 
 namespace Game.Utils
 {
+    public class GameSettings
+    {
+        public bool UseSwipe { get; set; }
+    }
+
     public class ApplicationSettings
     {
         private const string KEY = "GameState";
+        private const string SettingsKey = "settings";
 
         public ApplicationSettings()
         {
+            Settings = LoadSettings();
+        }
+
+        private GameSettings LoadSettings()
+        {
+            GameSettings settings = null;
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains(SettingsKey))
+            {
+                IsolatedStorageSettings.ApplicationSettings.Add(SettingsKey, SerializeToStrng(new GameSettings
+                {
+                    UseSwipe = false
+                }));
+            }
+            else
+            {
+                var favsJsonString = (string)IsolatedStorageSettings.ApplicationSettings[SettingsKey];
+                settings = DeserializeFromString<GameSettings>(favsJsonString);
+            }
+            return settings;
         }
 
         public bool HasStoredGame
@@ -17,6 +42,7 @@ namespace Game.Utils
             get { return IsolatedStorageSettings.ApplicationSettings.Contains(KEY); }
         }
 
+        public GameSettings Settings { get; set; }
 
         private static GameState Load()
         {
@@ -28,22 +54,33 @@ namespace Game.Utils
             else
             {
                 var favsJsonString = (string)IsolatedStorageSettings.ApplicationSettings[KEY];
-                state = DeserializeFromString(favsJsonString);
+                state = DeserializeFromString<GameState>(favsJsonString);
             }
             return state;
         }
 
-        private static GameState DeserializeFromString(string favsJsonString)
+        private static T DeserializeFromString<T>(string favsJsonString)
         {
-            var deserializedFavs = JsonConvert.DeserializeObject<GameState>(favsJsonString);
+            var deserializedFavs = JsonConvert.DeserializeObject<T>(favsJsonString);
             return deserializedFavs;
         }
 
-        private static string SerializeToStrng(GameState favs)
+        private static string SerializeToStrng<T>(T favs)
         {
             return JsonConvert.SerializeObject(favs);
         }
 
+        public void SaveSettings()
+        {
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains(SettingsKey))
+            {
+                IsolatedStorageSettings.ApplicationSettings.Add(SettingsKey, SerializeToStrng(Settings));
+            }
+            else
+            {
+                IsolatedStorageSettings.ApplicationSettings[SettingsKey] = SerializeToStrng(Settings);
+            }
+        }
 
         public void Save(GameProcess gameProcess)
         {
