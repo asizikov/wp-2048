@@ -100,6 +100,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Process\AnimationFactory.cs" />
     <Compile Include="Process\InputObserver.cs" />
     <Compile Include="Process\GameScreenController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

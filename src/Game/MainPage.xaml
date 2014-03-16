@@ -13,7 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
-        <Storyboard x:Name="fadeIn">
+        <Storyboard x:Name="ScorePop">
                 <ColorAnimationUsingKeyFrames Duration="0:0:0.3" 
                                               FillBehavior="Stop" 
                                               Storyboard.TargetName="Score" 

@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using Game.Lifecicle;
-using Game.Utils;
 using GameEngine;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
@@ -15,7 +14,7 @@ namespace Game.Process
     internal class GameScreenController : IGameController, IDisposable
     {
         private MainPage _view;
-        private int _size;
+        private int _cellSize;
         private readonly object _drawLock = new object();
         private string _lastScore = string.Empty;
 
@@ -35,7 +34,7 @@ namespace Game.Process
             {
                 _lastScore = _view.OverScore.Text;
             }
-            
+
             var shareStatusTask = new ShareStatusTask
             {
                 Status = "I scored " + _lastScore + " points at 2048 for Windows Phone, a game where you " +
@@ -67,57 +66,94 @@ namespace Game.Process
 
         public void RedrawUi(GameGrid grid, GameStatus gameStatus)
         {
-             var score = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
-            var animateScore = score != _view.Score.Text;
-            _view.Score.Text = score;
-            if (animateScore)
-            {
-                AnimateScore();
-            }
+            UpdateScore(gameStatus.Score.ToString(CultureInfo.InvariantCulture));
+
+            var listCellsToAnimate = new List<Border>();
+
             lock (_drawLock)
             {
                 _view.Field.Children.Clear();
                 for (int i = 0; i < grid.Cells.Length; i++)
                 {
-
-                    var row = new StackPanel { Orientation = Orientation.Horizontal };
+                    var row = new StackPanel
+                    {
+                        Orientation = Orientation.Horizontal
+                    };
                     _view.Field.Children.Add(row);
 
                     for (int j = 0; j < grid.Cells.Length; j++)
                     {
-                        var rect = CreateCell(grid, j, i);
-                        row.Children.Add(rect);
+                        var cellView = CreateCell(grid, j, i);
+                        var cell = grid.Cells[j][i];
+                        if (cell != null && cell.MergedFrom != null && cell.Value != 0)
+                        {
+                            listCellsToAnimate.Add(cellView);
+                        }
+                        var canvas = new Canvas
+                        {
+                            Height = _cellSize + 12,
+                            Width = _cellSize + 12,
+                        };
+                        Canvas.SetLeft(cellView, 12);
+                        Canvas.SetTop(cellView, 12);
+
+                        canvas.Children.Add(cellView);
+
+                        row.Children.Add(canvas);
                     }
                 }
             }
 
+            AnimateCellsIfNeeded(listCellsToAnimate);
+
             if (gameStatus.Over || gameStatus.Won)
             {
-                _view.GameOverBg.Visibility = Visibility.Visible;
-                _view.GameOver.Visibility = Visibility.Visible;
-
-                _view.OverScore.Text = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
-                _view.OverStatus.Text = gameStatus.Won ? "You win!" : "Game over!";
-                if (gameStatus.Won)
-                {
-                    StatisticsService.PublishWon();
-                }
+                ShowGameOverScreen(gameStatus);
             }
             else
             {
-                if (_view.GameOver.Visibility == Visibility.Visible)
-                {
-                    _view.GameOverBg.Visibility = Visibility.Collapsed;
-                    _view.GameOver.Visibility = Visibility.Collapsed;
-                }
+                HideGameOverScreen();
             }
-            
         }
 
-        private void AnimateScore()
+        private void AnimateCellsIfNeeded(IEnumerable<Border> listCellsToAnimate)
         {
-            _view.fadeIn.Begin();
+            foreach (var cellView in listCellsToAnimate)
+            {
+                AnimationFactory.AnimateCell(cellView);
+            }
+        }
 
+        private void HideGameOverScreen()
+        {
+            if (_view.GameOver.Visibility == Visibility.Visible)
+            {
+                _view.GameOverBg.Visibility = Visibility.Collapsed;
+                _view.GameOver.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ShowGameOverScreen(GameStatus gameStatus)
+        {
+            _view.GameOverBg.Visibility = Visibility.Visible;
+            _view.GameOver.Visibility = Visibility.Visible;
+
+            _view.OverScore.Text = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
+            _view.OverStatus.Text = gameStatus.Won ? "You win!" : "Game over!";
+            if (gameStatus.Won)
+            {
+                StatisticsService.PublishWon();
+            }
+        }
+
+        private void UpdateScore(string score)
+        {
+            var animateScore = score != _view.Score.Text;
+            _view.Score.Text = score;
+            if (animateScore)
+            {
+                _view.ScorePop.Begin();
+            }
         }
 
         private Border CreateCell(GameGrid grid, int j, int i)
@@ -135,21 +171,21 @@ namespace Game.Process
                 Text = value
             };
 
-            _size = 90;
+            _cellSize = 90;
             var rect = new Border
             {
-                Height = _size,
-                Width = _size,
+                Height = _cellSize,
+                Width = _cellSize,
                 Background = new SolidColorBrush(GetBackground(cell)),
-                Margin = new Thickness(12, 12, 0, 0),
                 Child = cellTb
             };
+
             return rect;
         }
 
         private static int GetFontSize(Tile cell)
         {
-            if(cell == null || cell.Value < 128)
+            if (cell == null || cell.Value < 128)
                 return 57;
             if (cell.Value == 256) return 45;
             if (cell.Value < 1024) return 50;
@@ -157,7 +193,7 @@ namespace Game.Process
             return 35;
         }
 
-        private  Color GetBackground(Tile cell)
+        private Color GetBackground(Tile cell)
         {
             if (cell == null)
                 return Colors.DarkGray;
@@ -170,7 +206,7 @@ namespace Game.Process
                 case 8:
                     return ConvertStringToColor("#f2b179");
                 case 16:
-                    return ConvertStringToColor("#f59563");;
+                    return ConvertStringToColor("#f59563");
                 case 32:
                     return ConvertStringToColor("#f67c5f");
                 case 64:
