@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Game.Process;
@@ -30,6 +31,8 @@ namespace Game
         {
             var x = e.TotalManipulation.Translation.X;
             var y = e.TotalManipulation.Translation.Y;
+
+            if(Math.Abs(x) < 25 && Math.Abs(y) < 25) return;
 
             if (Math.Abs(x) > Math.Abs(y))
             {

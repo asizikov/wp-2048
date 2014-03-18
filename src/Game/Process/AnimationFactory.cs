@@ -149,7 +149,7 @@ namespace Game.Process
             }
             var moveAnimationX = new DoubleAnimationUsingKeyFrames
             {
-                Duration = TimeSpan.FromMilliseconds(200)
+                Duration = TimeSpan.FromMilliseconds(150)
             };
 
             moveAnimationX.KeyFrames.Add(
@@ -163,7 +163,7 @@ namespace Game.Process
                 new LinearDoubleKeyFrame
                 {
                     Value = Positions[end],
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(200))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(150))
                 }
                 );
 
