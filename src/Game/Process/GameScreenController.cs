@@ -74,13 +74,13 @@ namespace Game.Process
 
         public void RedrawUi(GameGrid grid, GameStatus gameStatus)
         {
+            
             UpdateScore(gameStatus.Score.ToString(CultureInfo.InvariantCulture));
 
             var listCellsToAnimate = new List<Border>();
-
             lock (_drawLock)
             {
-                _view.Field.Children.Clear();
+                
                 for (int i = 0; i < grid.Cells.Length; i++)
                 {
                     var row = new StackPanel

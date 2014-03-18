@@ -79,10 +79,31 @@
 
         </StackPanel>
         <Grid Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1">
-            <StackPanel Name="Field" />
+            <Canvas Width="440" Height="440" >
+                <Border Canvas.Top="0" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="0" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="0" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="0" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+
+                <Border Canvas.Top="113" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="113" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="113" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="113" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+
+                <Border Canvas.Top="226" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="226" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="226" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="226" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+
+                <Border Canvas.Top="339" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="339" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="339" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="339" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+            </Canvas>
+            <Canvas Width="400" Height="440" Name="Field"/>
         </Grid>
 
-        <Grid Name="ButtonsControl" Grid.Column="0" Margin="12,0,12,12" Grid.ColumnSpan="3" VerticalAlignment="Top"
+        <Grid Name="ButtonsControl" Grid.Column="0" Margin="12,24,12,12" Grid.ColumnSpan="3" VerticalAlignment="Center"
               Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -97,13 +118,13 @@
                 <Button
                     BorderBrush="White"
                     Foreground="DarkGray"
-                    Height="110" Name="UpButton">
+                    Height="100" Name="UpButton">
                     <Image Source="/Assets/arrow-up-01.png" />
                 </Button>
                 <Button
                     BorderBrush="White"
                     Foreground="DarkGray"
-                    Height="110" Name="DownButton">
+                    Height="100" Name="DownButton">
                     <Image Source="/Assets/arrow-down-01.png" />
                 </Button>
             </StackPanel>
