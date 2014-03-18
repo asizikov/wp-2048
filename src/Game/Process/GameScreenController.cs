@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,12 +14,35 @@ using Microsoft.Phone.Tasks;
 
 namespace Game.Process
 {
+    internal enum AnimationType
+    {
+        Appear,
+        Move,
+        MoveAndMerge
+    }
+
+    internal class Pair
+    {
+        public AnimationType Type { get; set; }
+        public Border View { get; set; }
+        public Tile Cell { get; set; }
+        public Position PreviousePosition { get; set; }
+    }
+
     internal class GameScreenController : IGameController
     {
         private MainPage _view;
-        private int _cellSize;
+
         private readonly object _drawLock = new object();
         private string _lastScore = string.Empty;
+
+        private readonly Dictionary<int, int> _positions = new Dictionary<int, int>
+        {
+            {0, 0},
+            {1, 113},
+            {2, 226},
+            {3, 339},
+        };
 
         public GameScreenController(MainPage view)
         {
@@ -25,7 +50,7 @@ namespace Game.Process
             _view.OverShare.Click += OverShareOnClick;
             _view.SettingsButton.Click += SettingsButtonOnClick;
             StatisticsService.ReportGamePageLoaded();
-            _view.LayoutRoot.Background = new SolidColorBrush(ConvertStringToColor("#34aadc"));
+            _view.LayoutRoot.Background = new SolidColorBrush(CellFactory.ConvertStringToColor("#34aadc"));
             BuildApplicationBar();
         }
 
@@ -46,7 +71,7 @@ namespace Game.Process
             var template = AppResources.GameShareTemplate;
             var shareStatusTask = new ShareStatusTask
             {
-                Status =  string.Format(template, _lastScore)
+                Status = string.Format(template, _lastScore)
             };
 
             shareStatusTask.Show();
@@ -74,45 +99,107 @@ namespace Game.Process
 
         public void RedrawUi(GameGrid grid, GameStatus gameStatus)
         {
-            
             UpdateScore(gameStatus.Score.ToString(CultureInfo.InvariantCulture));
+            _view.Field.Children.Clear();
 
-            var listCellsToAnimate = new List<Border>();
-            lock (_drawLock)
+            var cellsForMoveAnimation = new List<Pair>();
+
+            for (int i = 0; i < grid.Cells.Length; i++)
             {
-                
-                for (int i = 0; i < grid.Cells.Length; i++)
+                for (int j = 0; j < grid.Cells.Length; j++)
                 {
-                    var row = new StackPanel
+                    var cell = grid.Cells[i][j];
+                    if (cell == null) continue;
+                    var cellView = CellFactory.Create(cell);
+
+                    if (cellView == null) continue;
+
+                    if (cell.PreviousPosition != null)
                     {
-                        Orientation = Orientation.Horizontal
-                    };
-                    _view.Field.Children.Add(row);
-
-                    for (int j = 0; j < grid.Cells.Length; j++)
-                    {
-                        var cellView = CreateCell(grid, j, i);
-                        var cell = grid.Cells[j][i];
-                        if (cell != null && cell.MergedFrom != null && cell.Value != 0)
+                        cellsForMoveAnimation.Add(new Pair
                         {
-                            listCellsToAnimate.Add(cellView);
-                        }
-                        var canvas = new Canvas
-                        {
-                            Height = _cellSize + 12,
-                            Width = _cellSize + 12,
-                        };
-                        Canvas.SetLeft(cellView, 12);
-                        Canvas.SetTop(cellView, 12);
-
-                        canvas.Children.Add(cellView);
-
-                        row.Children.Add(canvas);
+                            Type = AnimationType.Move,
+                            Cell = cell,
+                            View = cellView,
+                            PreviousePosition = cell.PreviousPosition
+                        });
+                        Canvas.SetLeft(cellView, _positions[cell.PreviousPosition.X]);
+                        Canvas.SetTop(cellView, _positions[cell.PreviousPosition.Y]);
                     }
+                    else if (cell.MergedFrom != null)
+                    {
+                        cellsForMoveAnimation.Add(new Pair
+                        {
+                            Type = AnimationType.MoveAndMerge,
+                            Cell = cell,
+                            View = cellView,
+                            PreviousePosition = new Position
+                            {
+                                X = cell.MergedFrom[0].X,
+                                Y = cell.MergedFrom[0].Y
+                            }
+                        });
+                        Canvas.SetLeft(cellView, _positions[cell.MergedFrom[0].X]);
+                        Canvas.SetTop(cellView, _positions[cell.MergedFrom[0].Y]);
+                    }
+                    else
+                    {
+                        cellsForMoveAnimation.Add(new Pair
+                        {
+                            Type = AnimationType.Appear,
+                            Cell = cell,
+                            View = cellView
+                        });
+                        Canvas.SetLeft(cellView, _positions[i]);
+                        Canvas.SetTop(cellView, _positions[j]);
+                    }
+
+                    _view.Field.Children.Add(cellView);
                 }
             }
 
-            AnimateCellsIfNeeded(listCellsToAnimate);
+            foreach (var pair in cellsForMoveAnimation)
+            {
+                AnimationFactory.ApplyAnimation(pair.Type, pair.View, pair.PreviousePosition, pair.Cell.X,
+                    pair.Cell.Y);
+            }
+
+
+//            lock (_drawLock)
+//            {
+//                
+//                for (int i = 0; i < grid.Cells.Length; i++)
+//                {
+//                    var row = new StackPanel
+//                    {
+//                        Orientation = Orientation.Horizontal
+//                    };
+//                    _view.Field.Children.Add(row);
+//
+//                    for (int j = 0; j < grid.Cells.Length; j++)
+//                    {
+//                        var cellView = CreateCell(grid, j, i);
+//                        //var cell = grid.Cells[j][i];
+////                        if (cell != null && cell.MergedFrom != null && cell.Value != 0)
+////                        {
+////                            listCellsToAnimate.Add(cellView);
+////                        }
+//                        var canvas = new Canvas
+//                        {
+//                            Height = _cellSize + 12,
+//                            Width = _cellSize + 12,
+//                        };
+//                        Canvas.SetLeft(cellView, 12);
+//                        Canvas.SetTop(cellView, 12);
+//
+//                        canvas.Children.Add(cellView);
+//
+//                        row.Children.Add(canvas);
+//                    }
+//                }
+//            }
+
+//            AnimateCellsIfNeeded(listCellsToAnimate);
 
             if (gameStatus.Over || gameStatus.Won)
             {
@@ -124,13 +211,6 @@ namespace Game.Process
             }
         }
 
-        private void AnimateCellsIfNeeded(IEnumerable<Border> listCellsToAnimate)
-        {
-            foreach (var cellView in listCellsToAnimate)
-            {
-                AnimationFactory.AnimateCell(cellView);
-            }
-        }
 
         private void HideGameOverScreen()
         {
@@ -163,103 +243,5 @@ namespace Game.Process
                 _view.ScorePop.Begin();
             }
         }
-
-        private Border CreateCell(GameGrid grid, int j, int i)
-        {
-            var cell = grid.Cells[j][i];
-            var value = cell == null ? " " : cell.Value.ToString(CultureInfo.InvariantCulture);
-
-            var cellTb = new TextBlock
-            {
-                Style = (Style) Application.Current.Resources["PhoneTextLargeStyle"],
-                FontSize = GetFontSize(cell),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                Foreground = new SolidColorBrush(Colors.Gray),
-                Text = value
-            };
-
-            _cellSize = 90;
-            var rect = new Border
-            {
-                Height = _cellSize,
-                Width = _cellSize,
-                Background = new SolidColorBrush(GetBackground(cell)),
-                Child = cellTb
-            };
-
-            return rect;
-        }
-
-        private static int GetFontSize(Tile cell)
-        {
-            if (cell == null || cell.Value < 128)
-                return 57;
-            if (cell.Value == 256) return 45;
-            if (cell.Value < 1024) return 50;
-
-            return 35;
-        }
-
-        private Color GetBackground(Tile cell)
-        {
-            if (cell == null)
-                return Colors.DarkGray;
-            switch (cell.Value)
-            {
-                case 2:
-                    return ConvertStringToColor("#eee4da");
-                case 4:
-                    return ConvertStringToColor("#ede0c8");
-                case 8:
-                    return ConvertStringToColor("#f2b179");
-                case 16:
-                    return ConvertStringToColor("#f59563");
-                case 32:
-                    return ConvertStringToColor("#f67c5f");
-                case 64:
-                    return ConvertStringToColor("#f65e3b");
-                case 128:
-                    return ConvertStringToColor("#edcf72");
-                case 256:
-                    return ConvertStringToColor("#edc850");
-                case 512:
-                    return ConvertStringToColor("#edc53f");
-                case 1024:
-                    return ConvertStringToColor("#edc53f");
-                case 2048:
-                    return ConvertStringToColor("#edc22e");
-                default:
-                    return ConvertStringToColor("#eee4da");
-            }
-        }
-
-        private static Color ConvertStringToColor(String hex)
-        {
-            //remove the # at the front
-            hex = hex.Replace("#", "");
-
-            byte a = 255;
-            byte r = 255;
-            byte g = 255;
-            byte b = 255;
-
-            int start = 0;
-
-            //handle ARGB strings (8 characters long)
-            if (hex.Length == 8)
-            {
-                a = byte.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
-                start = 2;
-            }
-
-            //convert RGB characters to bytes
-            r = byte.Parse(hex.Substring(start, 2), NumberStyles.HexNumber);
-            g = byte.Parse(hex.Substring(start + 2, 2), NumberStyles.HexNumber);
-            b = byte.Parse(hex.Substring(start + 4, 2), NumberStyles.HexNumber);
-
-            return Color.FromArgb(a, r, g, b);
-        }
-
     }
 }

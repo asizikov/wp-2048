@@ -24,12 +24,11 @@ namespace Game.Process
         public int Y { get; set; }
         public int Value { get; set; }
         public Tile[] MergedFrom { get; set; }
-        private Position PreviousPosition { get; set; }
+        public Position PreviousPosition { get; set; }
 
         public void SavePosition()
         {
-            PreviousPosition = new Position {X = X, Y = Y};
-            PreviousPosition = new Position {X = X, Y = Y};
+            PreviousPosition = new Position {X = this.X, Y = this.Y};
         }
 
         public void UpdatePosition(Position position)

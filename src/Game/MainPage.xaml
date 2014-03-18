@@ -60,7 +60,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.ColumnSpan="3" Margin="36,12">
+        <StackPanel Grid.ColumnSpan="3" Margin="12,12">
             <TextBlock
                 Foreground="White"
                 Style="{StaticResource PhoneTextLargeStyle}" Text="2048" />
@@ -100,10 +100,11 @@
                 <Border Canvas.Top="339" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
                 <Border Canvas.Top="339" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
             </Canvas>
-            <Canvas Width="400" Height="440" Name="Field"/>
+            <Canvas Width="440" Height="440" Name="Field"/>
         </Grid>
 
-        <Grid Name="ButtonsControl" Grid.Column="0" Margin="12,24,12,12" Grid.ColumnSpan="3" VerticalAlignment="Center"
+        <Grid Name="ButtonsControl" Grid.Column="0" 
+              Margin="0,24,0,12" Grid.ColumnSpan="3"
               Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -114,7 +115,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" Margin="0">
                 <Button
                     BorderBrush="White"
                     Foreground="DarkGray"
@@ -142,9 +143,9 @@
         </Grid>
         <Grid Name="SwipeControl"
               Visibility="Collapsed"
-              Grid.Column="0" Margin="24,0,12,100" Grid.ColumnSpan="3" VerticalAlignment="Top"
+              Grid.Column="0" Margin="12,0,12,100" Grid.ColumnSpan="3" VerticalAlignment="Top"
               Grid.Row="2">
-            <TextBlock Margin="24"
+            <TextBlock Margin="0"
                        TextWrapping="Wrap" 
                        Text="{Binding S.ControlUseSwipe, Source={StaticResource Strings}}"
                        Style="{StaticResource PhoneTextLargeStyle}">
@@ -159,13 +160,13 @@
                 <Button 
                 BorderBrush="White"
                 Margin="0,0,0,0"
-                Height="87" Width="87" Name="SettingsButton">
+                Height="90" Width="90" Name="SettingsButton">
                 <Image Source="/Assets/settings.png" />
                 </Button>
                 <Button 
                 BorderBrush="White"
-                Margin="0,0,24,0"
-                Height="87" Width="87" Name="ResetButton">
+                Margin="0,0,12,0"
+                Height="90" Width="90" Name="ResetButton">
                     <Image Source="/Assets/refresh.png" />
                 </Button>
             </StackPanel>

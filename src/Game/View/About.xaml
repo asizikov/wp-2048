@@ -14,7 +14,10 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/Cat.jpg"/>
+        </Grid.Background>
         <phone:Pivot>
             <phone:PivotItem Header="{Binding S.About, Source={StaticResource Strings}}">
                 <StackPanel>
