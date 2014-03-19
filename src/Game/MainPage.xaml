@@ -14,33 +14,53 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
     <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="GameOverFaidIn">
+            <DoubleAnimationUsingKeyFrames
+                FillBehavior="Stop"
+                Storyboard.TargetName="GameOverBg"
+                Storyboard.TargetProperty="Opacity"
+                Duration="0:0:0.7">
+                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.7" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="GameOverControalsSlideIn">
+            <DoubleAnimationUsingKeyFrames
+                FillBehavior="Stop"
+                Storyboard.TargetName="GameOverControls"
+                Storyboard.TargetProperty="(Canvas.Top)"
+                Duration="0:0:0.7">
+                <LinearDoubleKeyFrame KeyTime="0:0:0" Value="800" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.7" Value="180" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
         <Storyboard x:Name="ScorePop">
-                <ColorAnimationUsingKeyFrames Duration="0:0:0.3" 
-                                              FillBehavior="Stop" 
-                                              Storyboard.TargetName="Score" 
-                                              Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-                    <LinearColorKeyFrame KeyTime="0:0:0" Value="White" />
-                    <LinearColorKeyFrame KeyTime="0:0:0.1" Value="Yellow" />
-                    <LinearColorKeyFrame KeyTime="0:0:0.2" Value="White" />
+            <ColorAnimationUsingKeyFrames Duration="0:0:0.3"
+                                          FillBehavior="Stop"
+                                          Storyboard.TargetName="Score"
+                                          Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+                <LinearColorKeyFrame KeyTime="0:0:0" Value="White" />
+                <LinearColorKeyFrame KeyTime="0:0:0.1" Value="Yellow" />
+                <LinearColorKeyFrame KeyTime="0:0:0.2" Value="White" />
             </ColorAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Duration="0:0:0.3" 
+            <DoubleAnimationUsingKeyFrames Duration="0:0:0.3"
                                            Storyboard.TargetProperty="FontSize"
-                                              Storyboard.TargetName="Score" >
+                                           Storyboard.TargetName="Score">
                 <LinearDoubleKeyFrame KeyTime="0:0:0" Value="32.0" />
                 <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="38.0" />
                 <LinearDoubleKeyFrame KeyTime="0:0:0.2" Value="32.0" />
             </DoubleAnimationUsingKeyFrames>
 
-            <DoubleAnimationUsingKeyFrames Duration="0:0:0.3" 
+            <DoubleAnimationUsingKeyFrames Duration="0:0:0.3"
                                            Storyboard.TargetProperty="(Canvas.Left)"
-                                              Storyboard.TargetName="Score" >
+                                           Storyboard.TargetName="Score">
                 <LinearDoubleKeyFrame KeyTime="0:0:0" Value="12.0" />
                 <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="6.0" />
                 <LinearDoubleKeyFrame KeyTime="0:0:0.2" Value="12.0" />
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Duration="0:0:0.3" 
+            <DoubleAnimationUsingKeyFrames Duration="0:0:0.3"
                                            Storyboard.TargetProperty="(Canvas.Top)"
-                                              Storyboard.TargetName="Score" >
+                                           Storyboard.TargetName="Score">
                 <LinearDoubleKeyFrame KeyTime="0:0:0" Value="0.0" />
                 <LinearDoubleKeyFrame KeyTime="0:0:0.1" Value="-3.0" />
                 <LinearDoubleKeyFrame KeyTime="0:0:0.2" Value="0.0" />
@@ -68,42 +88,43 @@
                 <TextBlock
                     Foreground="White"
                     Margin="12,0,0,12"
-                    Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding S.Score, Source={StaticResource Strings}}" />
+                    Style="{StaticResource PhoneTextLargeStyle}"
+                    Text="{Binding S.Score, Source={StaticResource Strings}}" />
                 <Canvas Margin="-12,0" Width="200">
                     <TextBlock Canvas.Left="0" Canvas.Top="0"
-                    Foreground="White"
-                    Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" " />
+                               Foreground="White"
+                               Style="{StaticResource PhoneTextLargeStyle}" Name="Score" Text=" " />
                 </Canvas>
 
             </StackPanel>
 
         </StackPanel>
         <Grid Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1">
-            <Canvas Width="440" Height="440" >
-                <Border Canvas.Top="0" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="0" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="0" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="0" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+            <Canvas Width="440" Height="440">
+                <Border Canvas.Top="0" Canvas.Left="0" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="0" Canvas.Left="113" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="0" Canvas.Left="226" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="0" Canvas.Left="339" Background="Gray" Width="100" Height="100" />
 
-                <Border Canvas.Top="113" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="113" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="113" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="113" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="113" Canvas.Left="0" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="113" Canvas.Left="113" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="113" Canvas.Left="226" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="113" Canvas.Left="339" Background="Gray" Width="100" Height="100" />
 
-                <Border Canvas.Top="226" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="226" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="226" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="226" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="226" Canvas.Left="0" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="226" Canvas.Left="113" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="226" Canvas.Left="226" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="226" Canvas.Left="339" Background="Gray" Width="100" Height="100" />
 
-                <Border Canvas.Top="339" Canvas.Left="0"   Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="339" Canvas.Left="113" Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="339" Canvas.Left="226"  Background="Gray" Width="100" Height="100"/>
-                <Border Canvas.Top="339" Canvas.Left="339"  Background="Gray" Width="100" Height="100"/>
+                <Border Canvas.Top="339" Canvas.Left="0" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="339" Canvas.Left="113" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="339" Canvas.Left="226" Background="Gray" Width="100" Height="100" />
+                <Border Canvas.Top="339" Canvas.Left="339" Background="Gray" Width="100" Height="100" />
             </Canvas>
-            <Canvas Width="440" Height="440" Name="Field"/>
+            <Canvas Width="440" Height="440" Name="Field" />
         </Grid>
 
-        <Grid Name="ButtonsControl" Grid.Column="0" 
+        <Grid Name="ButtonsControl" Grid.Column="0"
               Margin="0,24,0,12" Grid.ColumnSpan="3"
               Grid.Row="2">
             <Grid.RowDefinitions>
@@ -146,47 +167,38 @@
               Grid.Column="0" Margin="12,0,12,100" Grid.ColumnSpan="3" VerticalAlignment="Top"
               Grid.Row="2">
             <TextBlock Margin="0"
-                       TextWrapping="Wrap" 
+                       TextWrapping="Wrap"
                        Text="{Binding S.ControlUseSwipe, Source={StaticResource Strings}}"
-                       Style="{StaticResource PhoneTextLargeStyle}">
-            </TextBlock>
+                       Style="{StaticResource PhoneTextLargeStyle}" />
         </Grid>
-        <Grid
-            Name="TopButtons"
+        <Grid Name="TopButtons"
             HorizontalAlignment="Right"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal">
-                <Button 
-                BorderBrush="White"
-                Margin="0,0,0,0"
-                Height="90" Width="90" Name="LeaderboardButton">
+                <Button
+                    BorderBrush="White"
+                    Margin="0,0,0,0"
+                    Height="90" Width="90" Name="LeaderboardButton">
                     <Image Source="/Assets/leaderboard.png" />
                 </Button>
-                <Button 
-                BorderBrush="White"
-                Margin="0,0,0,0"
-                Height="90" Width="90" Name="SettingsButton">
-                <Image Source="/Assets/settings.png" />
+                <Button
+                    BorderBrush="White"
+                    Margin="0,0,0,0"
+                    Height="90" Width="90" Name="SettingsButton">
+                    <Image Source="/Assets/settings.png" />
                 </Button>
-                <Button 
-                BorderBrush="White"
-                Margin="0,0,12,0"
-                Height="90" Width="90" Name="ResetButton">
+                <Button
+                    BorderBrush="White"
+                    Margin="0,0,12,0"
+                    Height="90" Width="90" Name="ResetButton">
                     <Image Source="/Assets/refresh.png" />
                 </Button>
             </StackPanel>
 
         </Grid>
-        
-        <Grid Grid.Row="0" Grid.RowSpan="3"
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
-              Background="Gray"
-              Opacity="0.9"
-              Name="GameOverBg"
-              Visibility="Collapsed" />
+
         <controls:FeedbackOverlay
             Grid.Row="0" Grid.RowSpan="3"
             Grid.Column="0"
@@ -194,33 +206,58 @@
             CompanyName="Anton Sizikov"
             FeedbackTo="pinholder@yandex.ru"
             ApplicationName="2048" />
-        <Grid
-            Name="GameOver"
-            Visibility="Collapsed"
-            Grid.Row="0" Grid.RowSpan="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="3">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text=""
+
+        <Grid Grid.Row="0" Grid.RowSpan="3"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              Opacity="0.99"
+              Name="GameOverBg"
+              Visibility="Visible">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/Cat.jpg" />
+            </Grid.Background>
+        </Grid>
+        <Canvas Name="GameOver"
+              Height="800"
+              Width="480"
+              Visibility="Visible"
+              Grid.Row="0" Grid.RowSpan="3"
+              Grid.Column="0"
+              Grid.ColumnSpan="3">
+
+            <Grid 
+                Name="GameOverControls"
+                Width="480"
+                Canvas.Top="180"
+                Canvas.Left="0"
+                VerticalAlignment="Center">
+                <StackPanel>
+                    
+                
+                <TextBlock Text="Game over!"
                            Foreground="White"
+                           FontSize="72"
+                           HorizontalAlignment="Center"
                            Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}" />
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="24" Orientation="Horizontal">
                     <TextBlock
                         Foreground="White"
-                        Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding S.Score, Source={StaticResource Strings}}" />
+                        Style="{StaticResource PhoneTextLargeStyle}"
+                        Text="{Binding S.Score, Source={StaticResource Strings}}" />
                     <TextBlock
                         Foreground="White"
                         Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text="" />
                 </StackPanel>
                 <Button
-                    BorderBrush="White"
-                    Foreground="White"
+                    Margin="24,12"
+                    Style="{StaticResource GameButtonStyle}"
                     Name="OverReset" Content="{Binding S.OverReset, Source={StaticResource Strings}}" />
                 <Button
-                    BorderBrush="White"
-                    Foreground="White"
+                    Margin="24,12"
+                    Style="{StaticResource GameButtonStyle}"
                     Name="OverShare" Content="{Binding S.OverShareResult, Source={StaticResource Strings}}" />
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
+        </Canvas>
     </Grid>
 </phone:PhoneApplicationPage>

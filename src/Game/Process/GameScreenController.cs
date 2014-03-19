@@ -165,50 +165,20 @@ namespace Game.Process
             }
 
 
-//            lock (_drawLock)
+            SetGameOverStatus(gameStatus);
+        }
+
+        private void SetGameOverStatus(GameStatus gameStatus)
+        {
+            ShowGameOverScreen(gameStatus);
+//            if (gameStatus.Over || gameStatus.Won)
 //            {
-//                
-//                for (int i = 0; i < grid.Cells.Length; i++)
-//                {
-//                    var row = new StackPanel
-//                    {
-//                        Orientation = Orientation.Horizontal
-//                    };
-//                    _view.Field.Children.Add(row);
-//
-//                    for (int j = 0; j < grid.Cells.Length; j++)
-//                    {
-//                        var cellView = CreateCell(grid, j, i);
-//                        //var cell = grid.Cells[j][i];
-////                        if (cell != null && cell.MergedFrom != null && cell.Value != 0)
-////                        {
-////                            listCellsToAnimate.Add(cellView);
-////                        }
-//                        var canvas = new Canvas
-//                        {
-//                            Height = _cellSize + 12,
-//                            Width = _cellSize + 12,
-//                        };
-//                        Canvas.SetLeft(cellView, 12);
-//                        Canvas.SetTop(cellView, 12);
-//
-//                        canvas.Children.Add(cellView);
-//
-//                        row.Children.Add(canvas);
-//                    }
-//                }
+//                ShowGameOverScreen(gameStatus);
 //            }
-
-//            AnimateCellsIfNeeded(listCellsToAnimate);
-
-            if (gameStatus.Over || gameStatus.Won)
-            {
-                ShowGameOverScreen(gameStatus);
-            }
-            else
-            {
-                HideGameOverScreen();
-            }
+//            else
+//            {
+//                HideGameOverScreen();
+//            }
         }
 
 
@@ -225,6 +195,9 @@ namespace Game.Process
         {
             _view.GameOverBg.Visibility = Visibility.Visible;
             _view.GameOver.Visibility = Visibility.Visible;
+            _view.GameOverFaidIn.Begin();
+            _view.GameOverControalsSlideIn.Begin();
+            
 
             _view.OverScore.Text = gameStatus.Score.ToString(CultureInfo.InvariantCulture);
             _view.OverStatus.Text = gameStatus.Won ? AppResources.GameYouWin : AppResources.GameGameOver;
