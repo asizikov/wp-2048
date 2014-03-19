@@ -171,14 +171,14 @@ namespace Game.Process
         private void SetGameOverStatus(GameStatus gameStatus)
         {
             ShowGameOverScreen(gameStatus);
-//            if (gameStatus.Over || gameStatus.Won)
-//            {
-//                ShowGameOverScreen(gameStatus);
-//            }
-//            else
-//            {
-//                HideGameOverScreen();
-//            }
+            if (gameStatus.Over || gameStatus.Won)
+            {
+                ShowGameOverScreen(gameStatus);
+            }
+            else
+            {
+                HideGameOverScreen();
+            }
         }
 
 
