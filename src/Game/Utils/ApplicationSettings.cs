@@ -1,4 +1,5 @@
-﻿using System.IO.IsolatedStorage;
+﻿using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using GameEngine;
 using Newtonsoft.Json;
 
@@ -7,6 +8,8 @@ namespace Game.Utils
     public class GameSettings
     {
         public bool UseSwipe { get; set; }
+        public List<int> BestScores { get; set; }
+        public bool UseVibro { get; set; }
     }
 
     public class ApplicationSettings
@@ -26,11 +29,17 @@ namespace Game.Utils
             {
                 IsolatedStorageSettings.ApplicationSettings.Add(SettingsKey, SerializeToStrng(new GameSettings
                 {
-                    UseSwipe = false
+                    UseSwipe = false,
+                    BestScores = new List<int>(),
+                    UseVibro = false
                 }));
             }
             var favsJsonString = (string) IsolatedStorageSettings.ApplicationSettings[SettingsKey];
             settings = DeserializeFromString<GameSettings>(favsJsonString);
+            if (settings.BestScores == null)
+            {
+                settings.BestScores = new List<int>();
+            }
             return settings;
         }
 

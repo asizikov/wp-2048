@@ -142,6 +142,33 @@ namespace Game.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to best scores.
+        /// </summary>
+        public static string BestScore {
+            get {
+                return ResourceManager.GetString("BestScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to we have no best scores yet.
+        /// </summary>
+        public static string BestScoreEmpty {
+            get {
+                return ResourceManager.GetString("BestScoreEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to best score!.
+        /// </summary>
+        public static string BestScoreToast {
+            get {
+                return ResourceManager.GetString("BestScoreToast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to use swipe gestures to move tiles.
         /// </summary>
         public static string ControlUseSwipe {

@@ -16,7 +16,6 @@ namespace Game
         public MainPage()
         {
             InitializeComponent();
-            
         }
 
 

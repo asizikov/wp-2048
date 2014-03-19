@@ -20,6 +20,7 @@ namespace Game.Lifecicle
         private const string Won = "We have a winner";
         private const string ShareClick = "Share result button clicked";
         private const string SettingsClick = "settings button clicked";
+        private const string LeaderboardClick = "leaderboard button clicked";
 
 
         public static void PublishAboutPageLoaded()
@@ -45,6 +46,11 @@ namespace Game.Lifecicle
         public static void PublishSettingsClicked()
         {
             PublishEvent(SettingsClick);
+        }
+
+        public static void PublishLeaderboardClicked()
+        {
+            PublishEvent(LeaderboardClick);
         }
     }
 }

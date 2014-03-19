@@ -1,40 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Windows.Phone.Devices.Notification;
 using Game.Lifecicle;
 using Game.Resources;
+using Game.Utils;
 using GameEngine;
+using Microsoft.Devices;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 
 namespace Game.Process
 {
-    internal enum AnimationType
-    {
-        Appear,
-        Move,
-        MoveAndMerge
-    }
-
-    internal class Pair
-    {
-        public AnimationType Type { get; set; }
-        public Border View { get; set; }
-        public Tile Cell { get; set; }
-        public Position PreviousePosition { get; set; }
-    }
-
     internal class GameScreenController : IGameController
     {
-        private MainPage _view;
-
-        private readonly object _drawLock = new object();
+        private readonly MainPage _view;
         private string _lastScore = string.Empty;
+        private readonly BestScoresController _bestScoresController;
 
         private readonly Dictionary<int, int> _positions = new Dictionary<int, int>
         {
@@ -44,14 +29,24 @@ namespace Game.Process
             {3, 339},
         };
 
+
+
         public GameScreenController(MainPage view)
         {
             _view = view;
             _view.OverShare.Click += OverShareOnClick;
             _view.SettingsButton.Click += SettingsButtonOnClick;
+            _view.LeaderboardButton.Click += LeaderboardButtonOnClick;
             StatisticsService.ReportGamePageLoaded();
             _view.LayoutRoot.Background = new SolidColorBrush(CellFactory.ConvertStringToColor("#34aadc"));
             BuildApplicationBar();
+            _bestScoresController = new BestScoresController();
+        }
+
+        private void LeaderboardButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            StatisticsService.PublishLeaderboardClicked();
+            _view.NavigationService.Navigate(new Uri("/View/Leaderboard.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void SettingsButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
@@ -99,10 +94,11 @@ namespace Game.Process
 
         public void RedrawUi(GameGrid grid, GameStatus gameStatus)
         {
-            UpdateScore(gameStatus.Score.ToString(CultureInfo.InvariantCulture));
+
+            UpdateScore(gameStatus.Score);
             _view.Field.Children.Clear();
 
-            var cellsForMoveAnimation = new List<Pair>();
+            var cellsForMoveAnimation = new List<CellInfo>();
 
             for (int i = 0; i < grid.Cells.Length; i++)
             {
@@ -116,7 +112,7 @@ namespace Game.Process
 
                     if (cell.PreviousPosition != null)
                     {
-                        cellsForMoveAnimation.Add(new Pair
+                        cellsForMoveAnimation.Add(new CellInfo
                         {
                             Type = AnimationType.Move,
                             Cell = cell,
@@ -128,7 +124,7 @@ namespace Game.Process
                     }
                     else if (cell.MergedFrom != null)
                     {
-                        cellsForMoveAnimation.Add(new Pair
+                        cellsForMoveAnimation.Add(new CellInfo
                         {
                             Type = AnimationType.MoveAndMerge,
                             Cell = cell,
@@ -144,7 +140,7 @@ namespace Game.Process
                     }
                     else
                     {
-                        cellsForMoveAnimation.Add(new Pair
+                        cellsForMoveAnimation.Add(new CellInfo
                         {
                             Type = AnimationType.Appear,
                             Cell = cell,
@@ -163,16 +159,14 @@ namespace Game.Process
                 AnimationFactory.ApplyAnimation(pair.Type, pair.View, pair.PreviousePosition, pair.Cell.X,
                     pair.Cell.Y);
             }
-
-
             SetGameOverStatus(gameStatus);
         }
 
         private void SetGameOverStatus(GameStatus gameStatus)
         {
-            ShowGameOverScreen(gameStatus);
             if (gameStatus.Over || gameStatus.Won)
             {
+                _bestScoresController.Persist();
                 ShowGameOverScreen(gameStatus);
             }
             else
@@ -207,10 +201,12 @@ namespace Game.Process
             }
         }
 
-        private void UpdateScore(string score)
+        private void UpdateScore(int score)
         {
-            var animateScore = score != _view.Score.Text;
-            _view.Score.Text = score;
+            _bestScoresController.SaveScore(score);
+            var scoreStr = score.ToString(CultureInfo.InvariantCulture);
+            var animateScore = scoreStr != _view.Score.Text;
+            _view.Score.Text = scoreStr;
             if (animateScore)
             {
                 _view.ScorePop.Begin();

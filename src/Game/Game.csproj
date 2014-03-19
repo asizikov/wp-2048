@@ -101,7 +101,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Process\AnimationFactory.cs" />
+    <Compile Include="Process\AnimationType.cs" />
+    <Compile Include="Process\BestScoresController.cs" />
     <Compile Include="Process\CellFactory.cs" />
+    <Compile Include="Process\CellInfo.cs" />
     <Compile Include="Process\InputObserver.cs" />
     <Compile Include="Process\GameScreenController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +126,10 @@
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AboutPageController.cs" />
+    <Compile Include="View\Leaderboard.xaml.cs">
+      <DependentUpon>Leaderboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LeaderboardPageController.cs" />
     <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -142,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Leaderboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +219,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Coding4Fun.Toolkit.Controls">
+      <HintPath>..\packages\Coding4Fun.Toolkit.Controls.2.0.7\lib\windowsphone8\Coding4Fun.Toolkit.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="JeffWilcox.PhoneThemeManager">
       <HintPath>..\packages\PhoneThemeManager.2.0\lib\windowsphone8\JeffWilcox.PhoneThemeManager.dll</HintPath>
     </Reference>

@@ -188,4 +188,13 @@
   <data name="Help" xml:space="preserve">
     <value>помощь</value>
   </data>
+  <data name="BestScore" xml:space="preserve">
+    <value>результаты</value>
+  </data>
+  <data name="BestScoreEmpty" xml:space="preserve">
+    <value>пока лучших результатов у нас не</value>
+  </data>
+  <data name="BestScoreToast" xml:space="preserve">
+    <value>лучший результат</value>
+  </data>
 </root>

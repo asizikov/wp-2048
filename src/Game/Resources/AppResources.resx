@@ -188,4 +188,13 @@
   <data name="Version" xml:space="preserve">
     <value>version:</value>
   </data>
+  <data name="BestScore" xml:space="preserve">
+    <value>best scores</value>
+  </data>
+  <data name="BestScoreEmpty" xml:space="preserve">
+    <value>we have no best scores yet</value>
+  </data>
+  <data name="BestScoreToast" xml:space="preserve">
+    <value>best score!</value>
+  </data>
 </root>
