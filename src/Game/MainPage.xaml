@@ -152,11 +152,18 @@
             </TextBlock>
         </Grid>
         <Grid
+            Name="TopButtons"
             HorizontalAlignment="Right"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal">
+                <Button 
+                BorderBrush="White"
+                Margin="0,0,0,0"
+                Height="90" Width="90" Name="LeaderboardButton">
+                    <Image Source="/Assets/leaderboard.png" />
+                </Button>
                 <Button 
                 BorderBrush="White"
                 Margin="0,0,0,0"

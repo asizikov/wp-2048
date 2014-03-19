@@ -159,6 +159,7 @@
     <Content Include="Assets\arrow-left-01.png" />
     <Content Include="Assets\arrow-down-01.png" />
     <Content Include="Assets\Cat.jpg" />
+    <Content Include="Assets\leaderboard.png" />
     <Content Include="Assets\refresh.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
