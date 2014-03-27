@@ -19,46 +19,16 @@ namespace Game.Process
             {3, 339},
         };
 
-        private static Storyboard AnimateAppear(Border cellView)
+        private static Storyboard AnimateAppear(DependencyObject cellView, AnimationType type)
         {
-//            var popUpAnimation
-//                = new DoubleAnimationUsingKeyFrames
-//                {
-//                    Duration = TimeSpan.FromMilliseconds(TotalDuration)
-//                };
-//
-//
-//            popUpAnimation.KeyFrames.Add(
-//                new LinearDoubleKeyFrame
-//                {
-//                    Value = 12,
-//                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0))
-//                });
-//
-//            popUpAnimation.KeyFrames.Add(
-//                new LinearDoubleKeyFrame
-//                {
-//                    Value = 11,
-//                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(MiddleDuration))
-//                }
-//                );
-//            popUpAnimation.KeyFrames.Add(
-//                new LinearDoubleKeyFrame
-//                {
-//                    Value = 12,
-//                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(TotalDuration))
-//                }
-//                );
-//
-//
-//            Storyboard.SetTarget(popUpAnimation, cellView);
-//            Storyboard.SetTargetProperty(popUpAnimation, new PropertyPath("(Canvas.Left)"));
-//            Storyboard.SetTargetProperty(popUpAnimation, new PropertyPath("(Canvas.Top)"));
+            var totalDuration = type == AnimationType.Appear ? TotalDuration : TotalDuration*2;
+            var start = type == AnimationType.Appear ? 0 : TotalDuration;
+            var middleDuration = type == AnimationType.Appear ? MiddleDuration : MiddleDuration*2;
 
             var expandAnimation
                 = new DoubleAnimationUsingKeyFrames
                 {
-                    Duration = TimeSpan.FromMilliseconds(TotalDuration)
+                    Duration = TimeSpan.FromMilliseconds(totalDuration)
                 };
 
 
@@ -66,35 +36,33 @@ namespace Game.Process
                 new LinearDoubleKeyFrame
                 {
                     Value = 100,
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(0))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(start))
                 });
 
             expandAnimation.KeyFrames.Add(
                 new LinearDoubleKeyFrame
                 {
                     Value = 110,
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(MiddleDuration))
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(middleDuration))
                 }
                 );
             expandAnimation.KeyFrames.Add(
                 new LinearDoubleKeyFrame
                 {
-                    Value = 100, // Target value (KeyValue)
-                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(TotalDuration))
+                    Value = 100,
+                    KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(totalDuration))
                 }
                 );
-            // Create a storyboard to apply the animation.
             Storyboard.SetTarget(expandAnimation, cellView);
             Storyboard.SetTargetProperty(expandAnimation, new PropertyPath("(Height)"));
             Storyboard.SetTargetProperty(expandAnimation, new PropertyPath("(Width)"));
 
             var popUpStoryBoard = new Storyboard();
-//            popUpStoryBoard.Children.Add(popUpAnimation);
             popUpStoryBoard.Children.Add(expandAnimation);
             return popUpStoryBoard;
         }
 
-        private static void FaidIn(Border cellView)
+        private static void FaidIn(DependencyObject cellView)
         {
             var expandAnimation
                 = new DoubleAnimationUsingKeyFrames
@@ -175,7 +143,7 @@ namespace Game.Process
             moveStoryBoard.Children.Add(moveAnimationX);
             if (type == AnimationType.MoveAndMerge)
             {
-                var app = AnimateAppear(cellView);
+                var app = AnimateAppear(cellView, type);
                 moveStoryBoard.Children.Add(app);
             }
             

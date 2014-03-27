@@ -102,10 +102,11 @@
     </Compile>
     <Compile Include="Process\AnimationFactory.cs" />
     <Compile Include="Process\AnimationType.cs" />
+    <Compile Include="Input\BaseInputObserver.cs" />
     <Compile Include="Process\BestScoresController.cs" />
     <Compile Include="Process\CellFactory.cs" />
     <Compile Include="Process\CellInfo.cs" />
-    <Compile Include="Process\InputObserver.cs" />
+    <Compile Include="Input\InputObserver.cs" />
     <Compile Include="Process\GameScreenController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
@@ -118,7 +119,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="SwipeInputObserver.cs" />
+    <Compile Include="Input\SwipeInputObserver.cs" />
     <Compile Include="Utils\ApplicationSettings.cs" />
     <Compile Include="Lifecicle\CrashLogger.cs" />
     <Compile Include="Utils\StoryboardHelper.cs" />

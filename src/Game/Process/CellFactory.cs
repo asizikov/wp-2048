@@ -22,7 +22,7 @@ namespace Game.Process
                 FontSize = GetFontSize(cell),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Foreground = new SolidColorBrush(Colors.Gray),
+                Foreground = GetForeground(cell),
                 Text = value
             };
             var rect = new Border
@@ -34,6 +34,15 @@ namespace Game.Process
             };
 
             return rect;
+        }
+
+        private static SolidColorBrush GetForeground(Tile cell)
+        {
+            if (cell != null && cell.Value > 2048)
+            {
+                return new SolidColorBrush(Colors.Orange);
+            }
+            return new SolidColorBrush(Colors.Gray);
         }
 
         private static int GetFontSize(Tile cell)
@@ -75,7 +84,7 @@ namespace Game.Process
                 case 2048:
                     return ConvertStringToColor("#edc22e");
                 default:
-                    return ConvertStringToColor("#eee4da");
+                    return ConvertStringToColor("#3c3a32");
             }
         }
 

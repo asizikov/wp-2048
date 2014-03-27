@@ -172,10 +172,10 @@
                        Style="{StaticResource PhoneTextLargeStyle}" />
         </Grid>
         <Grid Name="TopButtons"
-            HorizontalAlignment="Right"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="3">
+              HorizontalAlignment="Right"
+              Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal">
                 <Button
                     BorderBrush="White"
@@ -218,44 +218,54 @@
             </Grid.Background>
         </Grid>
         <Canvas Name="GameOver"
-              Height="800"
-              Width="480"
-              Visibility="Visible"
-              Grid.Row="0" Grid.RowSpan="3"
-              Grid.Column="0"
-              Grid.ColumnSpan="3">
+                Height="800"
+                Width="480"
+                Visibility="Visible"
+                Grid.Row="0" Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3">
 
-            <Grid 
+            <Grid
                 Name="GameOverControls"
                 Width="480"
                 Canvas.Top="180"
                 Canvas.Left="0"
                 VerticalAlignment="Center">
                 <StackPanel>
-                    
-                
-                <TextBlock Text="Game over!"
-                           Foreground="White"
-                           FontSize="72"
-                           HorizontalAlignment="Center"
-                           Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}" />
-                <StackPanel Margin="24" Orientation="Horizontal">
-                    <TextBlock
-                        Foreground="White"
-                        Style="{StaticResource PhoneTextLargeStyle}"
-                        Text="{Binding S.Score, Source={StaticResource Strings}}" />
-                    <TextBlock
-                        Foreground="White"
-                        Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text="" />
-                </StackPanel>
-                <Button
-                    Margin="24,12"
-                    Style="{StaticResource GameButtonStyle}"
-                    Name="OverReset" Content="{Binding S.OverReset, Source={StaticResource Strings}}" />
-                <Button
-                    Margin="24,12"
-                    Style="{StaticResource GameButtonStyle}"
-                    Name="OverShare" Content="{Binding S.OverShareResult, Source={StaticResource Strings}}" />
+
+
+                    <TextBlock Text="Game over!"
+                               Foreground="White"
+                               FontSize="72"
+                               HorizontalAlignment="Center"
+                               Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}" />
+                    <StackPanel Margin="24" Orientation="Horizontal">
+                        <TextBlock
+                            Foreground="White"
+                            Style="{StaticResource PhoneTextLargeStyle}"
+                            Text="{Binding S.Score, Source={StaticResource Strings}}" />
+                        <TextBlock
+                            Foreground="White"
+                            Name="OverScore" Style="{StaticResource PhoneTextLargeStyle}" Text="" />
+                    </StackPanel>
+                    <Button
+                        Margin="24,12"
+                        Style="{StaticResource GameButtonStyle}"
+                        Name="OverKeepPlaying"
+                        Content="{Binding S.OverKeepPlaying ,Source={StaticResource Strings}}" />
+                    <Button
+                        Margin="24,12"
+                        Style="{StaticResource GameButtonStyle}"
+                        Name="ShowGameField"
+                        Content="{Binding S.ShowGameField ,Source={StaticResource Strings}}" />
+                    <Button
+                        Margin="24,12"
+                        Style="{StaticResource GameButtonStyle}"
+                        Name="OverReset" Content="{Binding S.OverReset, Source={StaticResource Strings}}" />
+                    <Button
+                        Margin="24,12"
+                        Style="{StaticResource GameButtonStyle}"
+                        Name="OverShare" Content="{Binding S.OverShareResult, Source={StaticResource Strings}}" />
                 </StackPanel>
             </Grid>
         </Canvas>

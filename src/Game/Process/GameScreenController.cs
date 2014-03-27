@@ -4,12 +4,9 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Windows.Phone.Devices.Notification;
 using Game.Lifecicle;
 using Game.Resources;
-using Game.Utils;
 using GameEngine;
-using Microsoft.Devices;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 
@@ -29,18 +26,22 @@ namespace Game.Process
             {3, 339},
         };
 
-
-
         public GameScreenController(MainPage view)
         {
             _view = view;
             _view.OverShare.Click += OverShareOnClick;
             _view.SettingsButton.Click += SettingsButtonOnClick;
             _view.LeaderboardButton.Click += LeaderboardButtonOnClick;
+            _view.ShowGameField.Click += ShowGameFieldOnClick;
             StatisticsService.ReportGamePageLoaded();
-            _view.LayoutRoot.Background = new SolidColorBrush(CellFactory.ConvertStringToColor("#34aadc"));
+            _view.LayoutRoot.Background = new SolidColorBrush(CellFactory.ConvertStringToColor("#328FDB"));
             BuildApplicationBar();
             _bestScoresController = new BestScoresController();
+        }
+
+        private void ShowGameFieldOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            HideGameOverScreen();
         }
 
         private void LeaderboardButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
@@ -131,8 +132,8 @@ namespace Game.Process
                             View = cellView,
                             PreviousePosition = new Position
                             {
-                                X = cell.MergedFrom[0].X,
-                                Y = cell.MergedFrom[0].Y
+                                X = cell.MergedFrom[0].PreviousPosition.X,
+                                Y = cell.MergedFrom[0].PreviousPosition.Y
                             }
                         });
                         Canvas.SetLeft(cellView, _positions[cell.MergedFrom[0].X]);
@@ -164,7 +165,7 @@ namespace Game.Process
 
         private void SetGameOverStatus(GameStatus gameStatus)
         {
-            if (gameStatus.Over || gameStatus.Won)
+            if ((gameStatus.Over || gameStatus.Won) && gameStatus.IsTermitated)
             {
                 _bestScoresController.Persist();
                 ShowGameOverScreen(gameStatus);
@@ -197,7 +198,14 @@ namespace Game.Process
             _view.OverStatus.Text = gameStatus.Won ? AppResources.GameYouWin : AppResources.GameGameOver;
             if (gameStatus.Won)
             {
+                _view.OverKeepPlaying.Visibility = Visibility.Visible;
+                _view.ShowGameField.Visibility = Visibility.Collapsed;
                 StatisticsService.PublishWon();
+            }
+            else
+            {
+                _view.OverKeepPlaying.Visibility = Visibility.Collapsed;
+                _view.ShowGameField.Visibility = Visibility.Visible;
             }
         }
 

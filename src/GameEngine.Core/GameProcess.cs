@@ -13,6 +13,7 @@ namespace GameEngine
         private int _score;
         private bool _over;
         private bool _won;
+        private bool _keepPlaying;
         private GameGrid _grid;
 
         private readonly Dictionary<Direction, Position> _vectors = new Dictionary<Direction, Position>
@@ -34,6 +35,7 @@ namespace GameEngine
 
             _inputObserver.Move += InputObserverOnMove;
             _inputObserver.Restart += InputObserverOnRestart;
+            _inputObserver.KeepPlaying += InputObserverOnKeepPlaying;
 
             _startTiles = 2;
 
@@ -51,6 +53,7 @@ namespace GameEngine
 
             _inputObserver.Move += InputObserverOnMove;
             _inputObserver.Restart += InputObserverOnRestart;
+            _inputObserver.KeepPlaying += InputObserverOnKeepPlaying;
             _startTiles = 2;
             Initialise(gameState);
         }
@@ -105,6 +108,7 @@ namespace GameEngine
                 var rnd = new Random();
 
                 var value = rnd.NextDouble() < 0.9 ? 2 : 4;
+//                var value = rnd.NextDouble() < 0.9 ? 256 : 512;
                 var tile = new Tile(_grid.RandomAvailableCell(), value);
 
                 _grid.InsertTile(tile);
@@ -116,9 +120,16 @@ namespace GameEngine
             Initialise();
         }
 
+        private void InputObserverOnKeepPlaying()
+        {
+            _keepPlaying = true;
+            _won = false;
+            Actuate();
+        }
+
         private void InputObserverOnMove(Direction direction)
         {
-            if (_over || _won) return; // Don't do anything if the game's over
+            if (IsGameTerminated()) return;
 
             var vector = GetVector(direction);
             var traversals = BuildTraversals(vector);
@@ -141,8 +152,10 @@ namespace GameEngine
                         // Only one merger per row traversal?
                         if (next != null && next.Value == tile.Value && next.MergedFrom == null)
                         {
-                            var merged = new Tile(positions.Next, tile.Value*2);
-                            merged.MergedFrom = new[] {tile, next};
+                            var merged = new Tile(positions.Next, tile.Value*2)
+                            {
+                                MergedFrom = new[] {tile, next}
+                            };
 
                             _grid.InsertTile(merged);
                             _grid.RemoveTile(tile);
@@ -188,7 +201,8 @@ namespace GameEngine
             {
                 Score = _score,
                 Over = _over,
-                Won = _won
+                Won = _won,
+                IsTermitated = IsGameTerminated()
             });
         }
 
@@ -199,13 +213,11 @@ namespace GameEngine
 
         private bool TileMatchesAvailable()
         {
-            Tile tile;
-
             for (var x = 0; x < _size; x++)
             {
                 for (var y = 0; y < _size; y++)
                 {
-                    tile = _grid.CellContent(new Position {X = x, Y = y});
+                    var tile = _grid.CellContent(new Position {X = x, Y = y});
 
                     if (tile != null)
                     {
@@ -296,6 +308,11 @@ namespace GameEngine
         {
             return _vectors[direction];
         }
+
+        private bool IsGameTerminated()
+        {
+            return _over || (_won && !_keepPlaying);
+        }
     }
 
     public class GameStatus
@@ -303,17 +320,6 @@ namespace GameEngine
         public int Score { get; set; }
         public bool Over { get; set; }
         public bool Won { get; set; }
-    }
-
-    internal class FarthestPosition
-    {
-        public Position Farthest { get; set; }
-        public Position Next { get; set; }
-    }
-
-    internal class Traversals
-    {
-        public List<int> X { get; set; }
-        public List<int> Y { get; set; }
+        public bool IsTermitated { get; set; }
     }
 }

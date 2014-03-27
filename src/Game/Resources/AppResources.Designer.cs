@@ -142,6 +142,15 @@ namespace Game.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to do you really want to restart current game?.
+        /// </summary>
+        public static string AreYouShureToRestart {
+            get {
+                return ResourceManager.GetString("AreYouShureToRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to best scores.
         /// </summary>
         public static string BestScore {
@@ -210,6 +219,15 @@ namespace Game.Resources {
         public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to keep playing.
+        /// </summary>
+        public static string OverKeepPlaying {
+            get {
+                return ResourceManager.GetString("OverKeepPlaying", resourceCulture);
             }
         }
         
@@ -286,11 +304,29 @@ namespace Game.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to show game field.
+        /// </summary>
+        public static string ShowGameField {
+            get {
+                return ResourceManager.GetString("ShowGameField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to version:.
         /// </summary>
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }

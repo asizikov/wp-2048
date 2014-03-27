@@ -197,4 +197,16 @@
   <data name="BestScoreToast" xml:space="preserve">
     <value>best score!</value>
   </data>
+  <data name="OverKeepPlaying" xml:space="preserve">
+    <value>keep playing</value>
+  </data>
+  <data name="ShowGameField" xml:space="preserve">
+    <value>show game field</value>
+  </data>
+  <data name="AreYouShureToRestart" xml:space="preserve">
+    <value>do you really want to restart current game?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
 </root>

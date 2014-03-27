@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using Game.Process;
-using GameEngine;
 
-namespace Game
+namespace Game.Input
 {
-    public class SwipeInputObserver : IInputObserver
+    public class SwipeInputObserver : BaseInputObserver
     {
         private readonly MainPage _view;
 
@@ -17,14 +15,17 @@ namespace Game
             _view.LayoutRoot.ManipulationCompleted += LayoutRootOnManipulationDelta;
             _view.ResetButton.Click += ResetButtonOnClick;
             _view.OverReset.Click += ResetButtonOnClick;
+            _view.OverKeepPlaying.Click += OverKeepPlayingOnClick;
+        }
+
+        private void OverKeepPlayingOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            FireKeepPlaying();
         }
 
         private void ResetButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (Restart != null)
-            {
-                Restart();
-            }
+            RestartWhithConfirmation();
         }
 
         private void LayoutRootOnManipulationDelta(object sender, ManipulationCompletedEventArgs e)
@@ -32,7 +33,7 @@ namespace Game
             var x = e.TotalManipulation.Translation.X;
             var y = e.TotalManipulation.Translation.Y;
 
-            if(Math.Abs(x) < 25 && Math.Abs(y) < 25) return;
+            if (Math.Abs(x) < 25 && Math.Abs(y) < 25) return;
 
             if (Math.Abs(x) > Math.Abs(y))
             {
@@ -40,27 +41,17 @@ namespace Game
             }
             else
             {
-                FireMove(y >= 0? Direction.Down : Direction.Up);
+                FireMove(y >= 0 ? Direction.Down : Direction.Up);
             }
         }
 
-        private void FireMove(Direction direction)
-        {
-            if (Move != null)
-            {
-                Move(direction);
-            }
-        }
-
-        public event Action<Direction> Move;
-        public event Action Restart;
-
-        public void Dispose()
+        public override void Dispose()
         {
             if (_view == null) return;
             _view.LayoutRoot.ManipulationCompleted -= LayoutRootOnManipulationDelta;
             _view.ResetButton.Click -= ResetButtonOnClick;
             _view.OverReset.Click -= ResetButtonOnClick;
+            _view.OverKeepPlaying.Click -= OverKeepPlayingOnClick;
         }
     }
 }

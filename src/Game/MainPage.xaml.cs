@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Navigation;
+using Game.Input;
 using Game.Process;
 using Game.Utils;
 using GameEngine;
@@ -31,7 +32,7 @@ namespace Game
             }
             else
             {
-                _inputObserver = new InputObserver(UpButton, DownButton, LeftButton, RightButton, ResetButton, OverReset);
+                _inputObserver = new InputObserver(this);
                 SwipeControl.Visibility = Visibility.Collapsed;
                 ButtonsControl.Visibility = Visibility.Visible;
             }

@@ -197,4 +197,16 @@
   <data name="BestScoreToast" xml:space="preserve">
     <value>лучший результат</value>
   </data>
+  <data name="OverKeepPlaying" xml:space="preserve">
+    <value>продолжить игру</value>
+  </data>
+  <data name="ShowGameField" xml:space="preserve">
+    <value>показать игровое поле</value>
+  </data>
+  <data name="AreYouShureToRestart" xml:space="preserve">
+    <value>вы уверены,что хотите начать игру заново?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Внимание!</value>
+  </data>
 </root>
