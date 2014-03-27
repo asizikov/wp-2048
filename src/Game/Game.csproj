@@ -122,7 +122,6 @@
     </Compile>
     <Compile Include="Input\SwipeInputObserver.cs" />
     <Compile Include="Utils\ApplicationSettings.cs" />
-    <Compile Include="Lifecicle\CrashLogger.cs" />
     <Compile Include="Utils\StoryboardHelper.cs" />
     <Compile Include="View\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
@@ -215,6 +214,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Curacao.Phone.Toolkit\Curacao.Phone.Toolkit.csproj">
+      <Project>{1C13211E-C828-467D-A8C4-1AA7DCABA5C5}</Project>
+      <Name>Curacao.Phone.Toolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameEngine.Core\GameEngine.Core.csproj">
       <Project>{19250E5F-78C6-44ED-8E96-33D7C4CA26A1}</Project>
       <Name>GameEngine.Core</Name>

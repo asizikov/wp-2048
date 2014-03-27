@@ -84,9 +84,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Navigation\NavigationService.cs" />
+    <Compile Include="Debug\CrashLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\SystemDispatcher.cs" />
     <Compile Include="Tombstone\TombstoneHelper.cs" />
   </ItemGroup>
   <ItemGroup>
