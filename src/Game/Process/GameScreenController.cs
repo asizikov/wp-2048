@@ -37,8 +37,10 @@ namespace Game.Process
             _view.SettingsButton.Click += SettingsButtonOnClick;
             _view.LeaderboardButton.Click += LeaderboardButtonOnClick;
             _view.ShowGameField.Click += ShowGameFieldOnClick;
-            StatisticsService.ReportGamePageLoaded();
+            
             _view.LayoutRoot.Background = _applicationSettings.Settings.BgColor.Color;
+            StatisticsService.ReportGamePageLoaded();
+            StatisticsService.ReportBgColor(_applicationSettings.Settings.BgColor);
             BuildApplicationBar();
             _bestScoresController = new BestScoresController();
         }

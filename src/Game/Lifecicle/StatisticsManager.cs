@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using Game.View;
 using Yandex.Metrica;
 
 namespace Game.Lifecicle
@@ -51,6 +53,11 @@ namespace Game.Lifecicle
         public static void PublishLeaderboardClicked()
         {
             PublishEvent(LeaderboardClick);
+        }
+
+        public static void ReportBgColor(BackgroundItem bgColor)
+        {
+            PublishEvent("Background Color is " + ( bgColor.Value ==  "#328FDB" ? "default" : "dark") );
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Game.Utils
             {
                 IsolatedStorageSettings.ApplicationSettings.Add(SettingsKey, SerializeToStrng(new GameSettings
                 {
-                    UseSwipe = false,
+                    UseSwipe = true,
                     BestScores = new List<int>(),
                     UseVibro = false,
                     BgColor = BackgroundItem.Default()

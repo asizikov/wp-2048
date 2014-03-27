@@ -166,7 +166,7 @@
               Visibility="Collapsed"
               Grid.Column="0" Margin="12,0,12,100" Grid.ColumnSpan="3" VerticalAlignment="Top"
               Grid.Row="2">
-            <TextBlock Margin="0"
+            <TextBlock Margin="12"
                        TextWrapping="Wrap"
                        Text="{Binding S.ControlUseSwipe, Source={StaticResource Strings}}"
                        Style="{StaticResource PhoneTextLargeStyle}" />
@@ -236,7 +236,7 @@
 
                     <TextBlock Text="Game over!"
                                Foreground="White"
-                               FontSize="72"
+                               FontSize="70"
                                HorizontalAlignment="Center"
                                Name="OverStatus" Style="{StaticResource PhoneTextLargeStyle}" />
                     <StackPanel Margin="24" Orientation="Horizontal">

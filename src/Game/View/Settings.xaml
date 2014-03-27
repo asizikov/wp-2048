@@ -43,7 +43,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Border Width="57" Height="57" Background="{Binding Color}"/>
-                                <TextBlock FontSize="25" Text="{Binding Name}"/>
+                                <TextBlock Margin="12" FontSize="27" Text="{Binding Name}"/>
                             </StackPanel>
                         </DataTemplate>
                     </toolkit:ListPicker.ItemTemplate>
