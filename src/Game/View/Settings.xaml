@@ -37,6 +37,17 @@
                 <toolkit:ToggleSwitch 
                     Name="GestureSwitch"
                 Header="{Binding S.SettingsUseSwipe, Source={StaticResource Strings}}"></toolkit:ToggleSwitch>
+                <TextBlock Style="{StaticResource PhoneTextLargeStyle}" Text="{Binding S.Background, Source={StaticResource Strings}}"/>
+                <toolkit:ListPicker Name="Backgrounds">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="57" Height="57" Background="{Binding Color}"/>
+                                <TextBlock FontSize="25" Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
             </StackPanel>
 
         </Grid>

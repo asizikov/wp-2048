@@ -209,4 +209,13 @@
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="Background" xml:space="preserve">
+    <value>background color</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>dark</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>default</value>
+  </data>
 </root>

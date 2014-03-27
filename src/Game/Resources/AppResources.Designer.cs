@@ -151,6 +151,15 @@ namespace Game.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to background color.
+        /// </summary>
+        public static string Background {
+            get {
+                return ResourceManager.GetString("Background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to best scores.
         /// </summary>
         public static string BestScore {
@@ -183,6 +192,24 @@ namespace Game.Resources {
         public static string ControlUseSwipe {
             get {
                 return ResourceManager.GetString("ControlUseSwipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dark.
+        /// </summary>
+        public static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to default.
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
             }
         }
         

@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Game.Lifecicle;
 using Game.Resources;
+using Game.Utils;
 using GameEngine;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
@@ -26,15 +27,18 @@ namespace Game.Process
             {3, 339},
         };
 
+        private ApplicationSettings _applicationSettings;
+
         public GameScreenController(MainPage view)
         {
+            _applicationSettings = new ApplicationSettings();
             _view = view;
             _view.OverShare.Click += OverShareOnClick;
             _view.SettingsButton.Click += SettingsButtonOnClick;
             _view.LeaderboardButton.Click += LeaderboardButtonOnClick;
             _view.ShowGameField.Click += ShowGameFieldOnClick;
             StatisticsService.ReportGamePageLoaded();
-            _view.LayoutRoot.Background = new SolidColorBrush(CellFactory.ConvertStringToColor("#328FDB"));
+            _view.LayoutRoot.Background = _applicationSettings.Settings.BgColor.Color;
             BuildApplicationBar();
             _bestScoresController = new BestScoresController();
         }

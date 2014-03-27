@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO.IsolatedStorage;
+using Game.View;
 using GameEngine;
 using Newtonsoft.Json;
 
@@ -10,6 +11,7 @@ namespace Game.Utils
         public bool UseSwipe { get; set; }
         public List<int> BestScores { get; set; }
         public bool UseVibro { get; set; }
+        public  BackgroundItem BgColor { get; set; }
     }
 
     public class ApplicationSettings
@@ -31,7 +33,8 @@ namespace Game.Utils
                 {
                     UseSwipe = false,
                     BestScores = new List<int>(),
-                    UseVibro = false
+                    UseVibro = false,
+                    BgColor = BackgroundItem.Default()
                 }));
             }
             var favsJsonString = (string) IsolatedStorageSettings.ApplicationSettings[SettingsKey];
@@ -39,6 +42,10 @@ namespace Game.Utils
             if (settings.BestScores == null)
             {
                 settings.BestScores = new List<int>();
+            }
+            if (settings.BgColor == null)
+            {
+                settings.BgColor = BackgroundItem.Default();
             }
             return settings;
         }
