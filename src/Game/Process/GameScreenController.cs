@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using Game.Lifecicle;
 using Game.Resources;
 using Game.Utils;
@@ -71,12 +70,22 @@ namespace Game.Process
             }
 
             var template = AppResources.GameShareTemplate;
-            var shareStatusTask = new ShareStatusTask
+
+            var shareLinkTast = new ShareLinkTask
             {
-                Status = string.Format(template, _lastScore)
+                Message = string.Format(template, _lastScore),
+                LinkUri = new Uri("http://www.windowsphone.com/s?appid=66f975f4-d5fd-474c-be7e-81edae2361e4")
+
             };
 
-            shareStatusTask.Show();
+            shareLinkTast.Show();
+
+//            var shareStatusTask = new ShareStatusTask
+//            {
+//                Status = string.Format(template, _lastScore)
+//            };
+
+//            shareStatusTask.Show();
         }
 
         private void BuildApplicationBar()

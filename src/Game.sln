@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngine.Core", "GameEngi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Curacao.Phone.Toolkit", "Curacao.Phone.Toolkit\Curacao.Phone.Toolkit.csproj", "{1C13211E-C828-467D-A8C4-1AA7DCABA5C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Curacao.Mvvm.Abstractions", "Curacao.Mvvm.Abstractions\Curacao.Mvvm.Abstractions.csproj", "{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,14 @@ Global
 		{1C13211E-C828-467D-A8C4-1AA7DCABA5C5}.Release|ARM.Build.0 = Release|ARM
 		{1C13211E-C828-467D-A8C4-1AA7DCABA5C5}.Release|x86.ActiveCfg = Release|x86
 		{1C13211E-C828-467D-A8C4-1AA7DCABA5C5}.Release|x86.Build.0 = Release|x86
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Release|ARM.ActiveCfg = Release|Any CPU
+		{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
