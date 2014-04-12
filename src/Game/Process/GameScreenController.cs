@@ -71,21 +71,14 @@ namespace Game.Process
 
             var template = AppResources.GameShareTemplate;
 
-            var shareLinkTast = new ShareLinkTask
+            var shareLinkTask = new ShareLinkTask
             {
                 Message = string.Format(template, _lastScore),
                 LinkUri = new Uri("http://www.windowsphone.com/s?appid=66f975f4-d5fd-474c-be7e-81edae2361e4")
 
             };
 
-            shareLinkTast.Show();
-
-//            var shareStatusTask = new ShareStatusTask
-//            {
-//                Status = string.Format(template, _lastScore)
-//            };
-
-//            shareStatusTask.Show();
+            shareLinkTask.Show();
         }
 
         private void BuildApplicationBar()

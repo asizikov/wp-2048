@@ -201,7 +201,7 @@
     <value>keep playing</value>
   </data>
   <data name="ShowGameField" xml:space="preserve">
-    <value>show game field</value>
+    <value>show field</value>
   </data>
   <data name="AreYouShureToRestart" xml:space="preserve">
     <value>do you really want to restart current game?</value>
@@ -217,5 +217,8 @@
   </data>
   <data name="Default" xml:space="preserve">
     <value>default</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>black</value>
   </data>
 </root>

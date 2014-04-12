@@ -201,7 +201,7 @@
     <value>продолжить игру</value>
   </data>
   <data name="ShowGameField" xml:space="preserve">
-    <value>показать игровое поле</value>
+    <value>показать поле</value>
   </data>
   <data name="AreYouShureToRestart" xml:space="preserve">
     <value>вы уверены,что хотите начать игру заново?</value>
@@ -217,5 +217,8 @@
   </data>
   <data name="Default" xml:space="preserve">
     <value>стандартный</value>
+  </data>
+  <data name="Black" xml:space="preserve">
+    <value>чёрный</value>
   </data>
 </root>

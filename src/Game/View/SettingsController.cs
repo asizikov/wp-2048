@@ -47,6 +47,11 @@ namespace Game.View
                 {
                     Name = AppResources.Dark,
                     Value = "#47403A"
+                },
+                new BackgroundItem
+                {
+                    Name = AppResources.Black,
+                    Value = "#000000"
                 }
             });
             if (view == null) throw new ArgumentNullException("view");

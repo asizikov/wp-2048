@@ -187,6 +187,15 @@ namespace Game.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to black.
+        /// </summary>
+        public static string Black {
+            get {
+                return ResourceManager.GetString("Black", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to use swipe gestures to move tiles.
         /// </summary>
         public static string ControlUseSwipe {
@@ -331,7 +340,7 @@ namespace Game.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to show game field.
+        ///   Looks up a localized string similar to show field.
         /// </summary>
         public static string ShowGameField {
             get {
