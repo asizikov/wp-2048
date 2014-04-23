@@ -5,6 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d">
+    <Style x:Key="GrayTitleStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextLargeStyle}">
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="FontSize" Value="23" />
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyLight}" />
+    </Style>
     <Style x:Key="GameButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="DeepSkyBlue" />
         <Setter Property="BorderBrush" Value="Transparent" />

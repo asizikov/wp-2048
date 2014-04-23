@@ -221,4 +221,13 @@
   <data name="Black" xml:space="preserve">
     <value>black</value>
   </data>
+  <data name="AppDescPinholder" xml:space="preserve">
+    <value>small free utility app to store your PIN codes</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>new</value>
+  </data>
+  <data name="TryOther" xml:space="preserve">
+    <value>other apps from this developer</value>
+  </data>
 </root>

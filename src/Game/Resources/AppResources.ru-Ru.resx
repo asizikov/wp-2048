@@ -221,4 +221,13 @@
   <data name="Black" xml:space="preserve">
     <value>чёрный</value>
   </data>
+  <data name="AppDescPinholder" xml:space="preserve">
+    <value>удобное бесплатное приложение для хранения PIN-кодов</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>новинки</value>
+  </data>
+  <data name="TryOther" xml:space="preserve">
+    <value>попробуйте другие наши приложения</value>
+  </data>
 </root>

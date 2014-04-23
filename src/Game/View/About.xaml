@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -16,7 +17,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="../Assets/Cat.jpg"/>
+            <ImageBrush ImageSource="../Assets/Cat.jpg" />
         </Grid.Background>
         <phone:Pivot>
             <phone:PivotItem Header="{Binding S.About, Source={StaticResource Strings}}">
@@ -35,9 +36,51 @@
                         Name="OriginalGameButton">
                         http://gabrielecirulli.github.io/2048/
                     </HyperlinkButton>
-                    <Button Name="ReviewButton" Margin="0,24"
-                            Content="{Binding S.AboutGiveUsAReview, Source={StaticResource Strings}}" />
+                    <Button
+                        Style="{StaticResource GameButtonStyle}"
+                        Name="ReviewButton" Margin="0,24"
+                        Content="{Binding S.AboutGiveUsAReview, Source={StaticResource Strings}}" />
                 </StackPanel>
+            </phone:PivotItem>
+            <phone:PivotItem Header="{Binding S.New , Source={StaticResource Strings}}">
+                <StackPanel>
+                    <TextBlock
+                        TextWrapping="Wrap"
+                        Text="{Binding S.TryOther , Source={StaticResource Strings}}"
+                               Style="{StaticResource PhoneTextLargeStyle}" />
+
+                    <phone:LongListSelector Name="OtherAppsList" Margin="0,12">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="400"
+                                      Margin="0"
+                                      toolkit:TiltEffect.IsTiltEnabled="True">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image Width="120" Height="120"
+                                           toolkit:SlideInEffect.LineIndex="1"
+                                           Grid.Column="0" Grid.RowSpan="2" Source="{Binding ImageUri}" />
+                                    <TextBlock Grid.Column="1" Grid.Row="0"
+                                               toolkit:SlideInEffect.LineIndex="2"
+                                               Style="{StaticResource PhoneTextLargeStyle}"
+                                               Text="{Binding Name}" />
+                                    <TextBlock Grid.Column="1" Grid.Row="1"
+                                               toolkit:SlideInEffect.LineIndex="3"
+                                               Style="{StaticResource GrayTitleStyle}"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding Description}" />
+                                </Grid>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </StackPanel>
+
             </phone:PivotItem>
             <phone:PivotItem Header="{Binding S.Help , Source={StaticResource Strings}}">
                 <StackPanel>
@@ -53,6 +96,9 @@
                 </StackPanel>
 
             </phone:PivotItem>
+
+            
+
         </phone:Pivot>
     </Grid>
 

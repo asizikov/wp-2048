@@ -59,5 +59,10 @@ namespace Game.Lifecicle
         {
             PublishEvent("Background Color is " + ( bgColor.Value ==  "#328FDB" ? "default" : "dark") );
         }
+
+        public static void PublishTryAppClicked(string name)
+        {
+            PublishEvent("Try other app clicked: " + name);
+        }
     }
 }
