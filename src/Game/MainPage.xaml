@@ -31,7 +31,7 @@
                 Storyboard.TargetProperty="(Canvas.Top)"
                 Duration="0:0:0.7">
                 <LinearDoubleKeyFrame KeyTime="0:0:0" Value="800" />
-                <LinearDoubleKeyFrame KeyTime="0:0:0.7" Value="180" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.7" Value="140" />
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="ScorePop">
@@ -228,7 +228,7 @@
             <Grid
                 Name="GameOverControls"
                 Width="480"
-                Canvas.Top="180"
+                Canvas.Top="140"
                 Canvas.Left="0"
                 VerticalAlignment="Center">
                 <StackPanel>
@@ -254,6 +254,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -284,6 +285,14 @@
                         Margin="24,12"
                         Style="{StaticResource GameButtonStyle}"
                         Name="OverShare" Content="{Binding S.OverShareResult, Source={StaticResource Strings}}" />
+
+                        <Button
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                                Grid.Row="2"
+                        Margin="24,12"
+                        Style="{StaticResource GameButtonStyle}"
+                        Name="OverAbout" Content="{Binding S.About, Source={StaticResource Strings}}" />
                     </Grid>
                    
                 </StackPanel>

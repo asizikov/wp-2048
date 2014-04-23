@@ -36,11 +36,11 @@ namespace Game.Process
             _view.SettingsButton.Click += SettingsButtonOnClick;
             _view.LeaderboardButton.Click += LeaderboardButtonOnClick;
             _view.ShowGameField.Click += ShowGameFieldOnClick;
+            _view.OverAbout.Click += AboutButtonOnClick;
             
             _view.LayoutRoot.Background = _applicationSettings.Settings.BgColor.Color;
             StatisticsService.ReportGamePageLoaded();
             StatisticsService.ReportBgColor(_applicationSettings.Settings.BgColor);
-            BuildApplicationBar();
             _bestScoresController = new BestScoresController();
         }
 
@@ -81,20 +81,6 @@ namespace Game.Process
             shareLinkTask.Show();
         }
 
-        private void BuildApplicationBar()
-        {
-            _view.ApplicationBar = new ApplicationBar
-            {
-                Mode = ApplicationBarMode.Minimized,
-                Opacity = 1.0,
-                IsVisible = true,
-                IsMenuEnabled = true
-            };
-
-            var aboutMenuItem = new ApplicationBarMenuItem {Text = AppResources.About};
-            aboutMenuItem.Click += AboutButtonOnClick;
-            _view.ApplicationBar.MenuItems.Add(aboutMenuItem);
-        }
 
         private void AboutButtonOnClick(object sender, EventArgs eventArgs)
         {
