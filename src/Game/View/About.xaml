@@ -49,11 +49,11 @@
                         Text="{Binding S.TryOther , Source={StaticResource Strings}}"
                                Style="{StaticResource PhoneTextLargeStyle}" />
 
-                    <phone:LongListSelector Name="OtherAppsList" Margin="0,12">
+                    <phone:LongListSelector Name="OtherAppsList" Margin="12,12">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <Grid Width="400"
-                                      Margin="0"
+                                <Grid Width="380"
+                                      HorizontalAlignment="Left"
                                       toolkit:TiltEffect.IsTiltEnabled="True">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -64,6 +64,7 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Image Width="120" Height="120"
+                                           Margin="0"
                                            toolkit:SlideInEffect.LineIndex="1"
                                            Grid.Column="0" Grid.RowSpan="2" Source="{Binding ImageUri}" />
                                     <TextBlock Grid.Column="1" Grid.Row="0"
