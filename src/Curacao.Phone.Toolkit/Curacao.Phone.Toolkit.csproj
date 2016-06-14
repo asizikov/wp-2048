@@ -89,11 +89,6 @@
     <Compile Include="Tombstone\TombstoneHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="JetBrains.Annotations.PCL">
-      <HintPath>..\Lib\JetBrains.Annotations.PCL.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Curacao.Mvvm.Abstractions\Curacao.Mvvm.Abstractions.csproj">
       <Project>{89D0EEFB-D98E-4CB7-85ED-CA55F98A8B41}</Project>
       <Name>Curacao.Mvvm.Abstractions</Name>
