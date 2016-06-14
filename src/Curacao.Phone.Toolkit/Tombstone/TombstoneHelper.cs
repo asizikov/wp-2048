@@ -2,15 +2,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using JetBrains.Annotations;
 using Microsoft.Phone.Controls;
 
 namespace Curacao.Phone.Toolkit.Tombstone
 {
-    [PublicAPI]
     public static class TombstoneHelper
     {
-        [PublicAPI]
         public static void RestoreState(this PhoneApplicationPage page, Pivot pivot)
         {
             RoutedEventHandler handler = null;
@@ -21,7 +18,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             pivot.Loaded += handler;
         }
 
-        [PublicAPI]
         public static object RestoreState(this PhoneApplicationPage page, string key)
         {
             if (page == null) throw new ArgumentNullException("page");
@@ -33,7 +29,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             return null;
         }
 
-        [PublicAPI]
         public static void RestoreState(this PhoneApplicationPage page, TextBox textBox)
         {
             if (page == null) throw new ArgumentNullException("page");
@@ -45,7 +40,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             }
         }
 
-        [PublicAPI]
         public static void SaveState(this PhoneApplicationPage page,
             Pivot pivot)
         {
@@ -65,7 +59,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             }
         }
 
-        [PublicAPI]
         public static void SaveState(this PhoneApplicationPage page, ScrollViewer scrollViewer)
         {
             if (page == null) throw new ArgumentNullException("page");
@@ -85,7 +78,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             }
         }
 
-        [PublicAPI]
         public static void SaveState(this PhoneApplicationPage page, TextBox textBox)
         {
             if (page == null) throw new ArgumentNullException("page");
@@ -103,7 +95,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             }
         }
 
-        [PublicAPI]
         public static void SaveState(this PhoneApplicationPage page, string key,
             object value)
         {
@@ -120,7 +111,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             }
         }
 
-        [PublicAPI]
         public static bool ShouldTombstone(this PhoneApplicationPage page,
             NavigatingCancelEventArgs e)
         {
@@ -130,7 +120,6 @@ namespace Curacao.Phone.Toolkit.Tombstone
             return !e.IsNavigationInitiator;
         }
 
-        [PublicAPI, CanBeNull]
         private static int? GetPivotSelectedIndex(this PhoneApplicationPage page, FrameworkElement pivot)
         {
             if (((page != null) && (pivot != null)) && (page.State != null))
