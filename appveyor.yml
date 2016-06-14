@@ -1,0 +1,7 @@
+version: 1.0.{build}
+image: Visual Studio 2013
+before_build:
+- ps: nuget restore src/Game.sln
+build:
+  project: src/Game.sln
+  verbosity: minimal
